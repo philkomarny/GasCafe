@@ -22,53 +22,72 @@ Gas Cafe One Stop (602 Butte Ave, Crested Butte, CO) wants a new website replaci
 
 ## Phase 1: Design Mockups ✅ COMPLETE — AWAITING CUSTOMER DECISION
 
-Six self-contained HTML mockups, each showing a complete homepage layout: hero, sample menu section, sample merch section, reviews, and footer. Same palette (black/white/red/blue) and AC/DC logo, different visual treatments.
+Eleven self-contained HTML mockups live on GitHub Pages, each showing a complete homepage layout with distinct visual DNA. Customer reviews at https://philkomarny.github.io/GasCafe/mockups/
 
 ### Mockup 1: "Highway to Flavor" — Bold Horizontal Bands
 - Full-bleed horizontal color bands: black, red stripe, blue stripe
-- AC/DC logo oversized and centered in hero, white on black
-- Red pinstripe navigation bar
-- Thick white horizontal rules between sections
+- Oversized logo, red pinstripe nav bar
 - Vibe: concert tour poster / highway billboard
 
 ### Mockup 2: "Backstage Pass" — Dark & Moody
 - Nearly all-black with chalkboard texture background
-- Red as the sole accent (borders, CTAs, hover states, lightning bolt)
-- Blue only as secondary accent (links, info badges)
-- Semi-transparent dark cards with red left-border
+- Red as the sole accent, semi-transparent dark cards
 - Vibe: the actual Gas Cafe interior — dark tin ceiling, chalkboard menus
 
 ### Mockup 3: "Vinyl Record" — Circular & Retro
 - Circular motifs: vinyl records, gas pump gauges, rounded badges
-- AC/DC logo inside a large circle (record label style)
-- Red/white/blue in equal measure — vintage Americana feel
-- Retro halftone dot textures as accents
+- Retro halftone dot textures
 - Vibe: 1970s rock album packaging meets vintage gas station
 
 ### Mockup 4: "Neon Nights" — Electric Glow
-- Pure black background, elements styled as neon signs
-- AC/DC logo with glowing white neon effect (CSS text-shadow)
-- Red and blue as neon glow colors on borders and interactive elements
-- Neon-tube underlines on menu items, pulse animation on CTAs
+- Pure black background, CSS neon glow effects
+- Flicker animation, pulse-glow CTAs
 - Vibe: gas station signs glowing on a dark mountain highway
 
 ### Mockup 5: "Americana Station" — Clean & Structured
-- White background sections alternating with dark sections
-- Classic patriotic red/white/blue gas station sign palette
-- AC/DC logo contained in a header badge (not oversized)
-- Strong grid layout, clear hierarchy
-- Menu as a clean scannable layout, blue header/footer bars, red CTAs
-- Vibe: modern restaurant site with Gas Cafe rock edge in the typography
+- White/cream backgrounds alternating with dark sections
+- Blue nav bar, red CTAs, strong grid layout
+- Vibe: modern restaurant site with rock & roll edge
 
 ### Mockup 6: "Apple Clean" — Premium Minimal
-- Pure CSS (no framework), Apple-style design patterns
-- Backdrop-blur sticky nav, gradient hero with badge and stats
-- Clean typography with subtle hover effects throughout
-- Rounded product cards with soft shadows, star-rated review cards
-- Dark about section, minimal footer
+- Pure CSS, backdrop-blur nav, gradient hero
+- Rounded product cards, subtle hover effects
 - Vibe: premium restaurant experience — elegance meets rock & roll
 
-**Deliverable:** 6 HTML files live on GitHub Pages. Customer picks one direction or a hybrid ("layout from #6, colors from #2"). This gates Phase 2.
+### Mockup 7: "Neubrutalist Diner" — Punk Zine
+- Hard 3px black borders, flat bold colors (yellow, red, blue), zero border-radius
+- Chunky box-shadows, tilted cards, sticker/badge motifs
+- Anton + Epilogue typography, bright backgrounds
+- Vibe: screen-printed restaurant menu on a skateboard
+
+### Mockup 8: "Concert Poster" — Full-Screen Storytelling
+- Each section is a full-viewport poster with its own color world
+- Abril Fatface dramatic serif headlines, grain texture overlays
+- Torn/jagged edge dividers between sections, no cards — just type on color
+- Vibe: flipping through gig posters at a record store
+
+### Mockup 9: "Retro Gas Station" — 1960s Skeuomorphic
+- Warm cream palette, vintage sign frames, thick borders with inner shadows
+- Gas pump flip-digit price displays for menu items
+- Analog gauge CSS animation, circular vintage badges
+- Righteous + Poppins typography
+- Vibe: lovingly restored Route 66 roadside attraction
+
+### Mockup 10: "Swiss Grid" — Editorial Magazine
+- Strict 12-column CSS grid, mathematical 8px-unit spacing
+- Almost entirely black & white, red (#DC2626) as the only accent
+- Barlow Condensed all-caps headlines, dot-leader price lists
+- Information-dense, duotone photo treatment
+- Vibe: design magazine spread, not a restaurant website
+
+### Mockup 11: "Mountain Highway" — Colorado Lodge
+- Warm cream/forest green/golden palette, organic curves
+- Playfair Display serif headlines, Karla body text
+- SVG wave section dividers, golden CTAs, generous whitespace
+- Photography-forward with warm color grading
+- Vibe: high-end Colorado hospitality for a beloved gas station deli
+
+**Deliverable:** 11 HTML files live on GitHub Pages. Customer picks one direction or a hybrid ("layout from #11, colors from #9"). This gates Phase 2.
 
 ---
 
@@ -351,7 +370,7 @@ site/
 | Phase | Depends On | Effort | Deliverable |
 |-------|-----------|--------|-------------|
 | 0: Archive + Scaffold | — | 1-2hr | Clean project structure ✅ |
-| 1: Design Mockups | Phase 0 | 4-6hr | 6 HTML mockups for customer review ✅ |
+| 1: Design Mockups | Phase 0 | 4-6hr | 11 HTML mockups for customer review ✅ |
 | **CUSTOMER PICKS DIRECTION** | Phase 1 | — | **⬅️ WE ARE HERE** |
 | 2: Shared Components | Customer decision | 2-3hr | Header, footer, design system |
 | 3: Build Pages | Phase 2 | 8-12hr | All 6 public pages |

@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gas Cafe — Mockup 10: Swiss Grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --red: #DC2626;
+    --gray-100: #f5f5f5;
+    --gray-200: #e5e5e5;
+    --gray-300: #d4d4d4;
+    --gray-400: #a3a3a3;
+    --gray-500: #737373;
+    --gray-600: #525252;
+    --gray-800: #262626;
+    --gray-900: #171717;
+    --rule: #d4d4d4;
+    --unit: 8px;
+    --col-gap: 16px;
+    --max-w: 1280px;
+    --font-condensed: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    --font-body: 'Barlow', 'Helvetica Neue', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--black);
+    background: var(--white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── 12-Column Grid System ── */
+  .grid-container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 calc(var(--unit) * 4);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0 var(--col-gap);
+    position: relative;
+  }
+
+  /* Visible grid lines */
+  .grid-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent calc((100% - 11 * var(--col-gap)) / 12),
+      var(--gray-200) calc((100% - 11 * var(--col-gap)) / 12),
+      var(--gray-200) calc((100% - 11 * var(--col-gap)) / 12 + var(--col-gap))
+    );
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  /* Grid lines as design elements between sections */
+  .grid-lines {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0 var(--col-gap);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .grid-lines span {
+    border-right: 1px solid var(--gray-200);
+  }
+  .grid-lines span:first-child {
+    border-left: 1px solid var(--gray-200);
+  }
+
+  /* ── Typography ── */
+  .heading-xl {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    line-height: 0.85;
+  }
+  .heading-lg {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    line-height: 0.9;
+  }
+  .heading-md {
+    font-family: var(--font-condensed);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1;
+  }
+  .heading-sm {
+    font-family: var(--font-condensed);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+  .body-text {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--gray-600);
+  }
+  .body-sm {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--gray-500);
+  }
+
+  /* ── Horizontal Rules ── */
+  .rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    grid-column: 1 / -1;
+  }
+  .rule-heavy {
+    border: none;
+    border-top: 2px solid var(--black);
+    grid-column: 1 / -1;
+  }
+
+  /* ── Section Spacing ── */
+  .section-gap {
+    height: calc(var(--unit) * 8);
+    grid-column: 1 / -1;
+  }
+  .section-gap-sm {
+    height: calc(var(--unit) * 4);
+    grid-column: 1 / -1;
+  }
+  .section-gap-lg {
+    height: calc(var(--unit) * 12);
+    grid-column: 1 / -1;
+  }
+
+  /* ── Duotone Image Treatment ── */
+  .img-duotone {
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+  .img-duotone img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1);
+  }
+  .img-duotone::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--red);
+    mix-blend-mode: multiply;
+    opacity: 0.35;
+  }
+
+  .img-bw img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1);
+  }
+
+  /* ═══════════════════════════════════════
+     MASTHEAD / HERO
+     ═══════════════════════════════════════ */
+  .masthead {
+    position: relative;
+    padding: calc(var(--unit) * 5) 0 calc(var(--unit) * 4);
+    overflow: hidden;
+  }
+
+  .masthead .grid-container {
+    align-items: start;
+    row-gap: 0;
+  }
+
+  /* Giant background number */
+  .masthead-bg-number {
+    position: absolute;
+    top: -40px;
+    right: -20px;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: clamp(200px, 35vw, 480px);
+    color: var(--gray-100);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+  }
+
+  .masthead-meta {
+    grid-column: 1 / 5;
+    padding: calc(var(--unit) * 2) 0;
+    z-index: 1;
+  }
+  .masthead-meta .label {
+    font-family: var(--font-condensed);
+    font-weight: 500;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--gray-400);
+    margin-bottom: calc(var(--unit) * 1);
+  }
+  .masthead-meta .location {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    color: var(--gray-600);
+    text-transform: uppercase;
+  }
+
+  .masthead-title {
+    grid-column: 1 / 10;
+    z-index: 1;
+    padding: calc(var(--unit) * 1) 0;
+  }
+  .masthead-title h1 {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: clamp(72px, 12vw, 160px);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 0.85;
+    color: var(--black);
+  }
+  .masthead-title .subtitle {
+    font-family: var(--font-condensed);
+    font-weight: 400;
+    font-size: clamp(24px, 4vw, 48px);
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    color: var(--gray-500);
+    margin-top: calc(var(--unit) * 1);
+  }
+
+  .masthead-logo {
+    grid-column: 10 / 13;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-top: calc(var(--unit) * 2);
+  }
+  .masthead-logo img {
+    width: 80px;
+    height: auto;
+    filter: grayscale(100%) contrast(1.2);
+  }
+
+  .masthead-issue {
+    grid-column: 10 / 13;
+    z-index: 1;
+    text-align: right;
+    padding: calc(var(--unit) * 3) 0 0;
+  }
+  .masthead-issue .numero {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--black);
+  }
+  .masthead-issue .year {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
+    color: var(--red);
+    line-height: 1;
+  }
+
+  .masthead-tagline {
+    grid-column: 1 / 7;
+    z-index: 1;
+    padding: calc(var(--unit) * 3) 0 0;
+  }
+  .masthead-tagline p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--gray-600);
+    max-width: 480px;
+  }
+
+  /* ═══════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════ */
+  .nav-bar {
+    border-top: 1px solid var(--black);
+    border-bottom: 1px solid var(--rule);
+    padding: calc(var(--unit) * 2) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+  }
+  .nav-bar .grid-container {
+    align-items: center;
+  }
+  .nav-brand {
+    grid-column: 1 / 4;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-links {
+    grid-column: 5 / 13;
+    display: flex;
+    justify-content: flex-end;
+    gap: calc(var(--unit) * 5);
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-condensed);
+    font-weight: 500;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--red);
+  }
+
+  /* ═══════════════════════════════════════
+     MENU SECTION
+     ═══════════════════════════════════════ */
+  .menu-section {
+    padding: calc(var(--unit) * 6) 0;
+  }
+
+  .menu-header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: calc(var(--unit) * 2);
+  }
+  .menu-header h2 {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    line-height: 1;
+  }
+  .menu-header .menu-note {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 0.8125rem;
+    color: var(--gray-400);
+    letter-spacing: 0.05em;
+  }
+
+  /* Menu columns */
+  .menu-col {
+    padding-top: calc(var(--unit) * 3);
+  }
+  .menu-col-left {
+    grid-column: 1 / 5;
+  }
+  .menu-col-center {
+    grid-column: 5 / 9;
+  }
+  .menu-col-right {
+    grid-column: 9 / 13;
+  }
+
+  .menu-col-header {
+    font-family: var(--font-condensed);
+    font-weight: 600;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: var(--gray-400);
+    padding-bottom: calc(var(--unit) * 2);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: calc(var(--unit) * 2);
+  }
+
+  .menu-item {
+    padding: calc(var(--unit) * 1) 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .menu-item:last-child {
+    border-bottom: none;
+  }
+  .menu-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .menu-item-name {
+    font-family: var(--font-condensed);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--black);
+    white-space: nowrap;
+  }
+  .menu-item-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--gray-300);
+    margin: 0 4px;
+    min-width: 20px;
+    position: relative;
+    top: -4px;
+  }
+  .menu-item-price {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--red);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .menu-item-desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 0.75rem;
+    color: var(--gray-400);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* Food photo in menu grid */
+  .menu-photo {
+    grid-column: 5 / 9;
+    grid-row: span 2;
+    padding-top: calc(var(--unit) * 3);
+  }
+  .menu-photo .img-duotone {
+    aspect-ratio: 4/3;
+  }
+  .menu-photo-caption {
+    font-family: var(--font-condensed);
+    font-weight: 400;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--gray-400);
+    margin-top: calc(var(--unit) * 1);
+  }
+
+  /* ═══════════════════════════════════════
+     MERCHANDISE SECTION
+     ═══════════════════════════════════════ */
+  .merch-section {
+    padding: calc(var(--unit) * 6) 0;
+  }
+
+  .merch-header {
+    grid-column: 1 / -1;
+    padding-bottom: calc(var(--unit) * 2);
+  }
+  .merch-header h2 {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    line-height: 1;
+  }
+
+  .merch-index {
+    grid-column: 1 / 8;
+    padding-top: calc(var(--unit) * 3);
+  }
+
+  .merch-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0 calc(var(--unit) * 2);
+    padding: calc(var(--unit) * 2) 0;
+    border-bottom: 1px solid var(--gray-200);
+    align-items: baseline;
+  }
+  .merch-item:first-child {
+    border-top: 1px solid var(--rule);
+  }
+  .merch-num {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    color: var(--gray-300);
+    letter-spacing: 0.1em;
+    min-width: 24px;
+  }
+  .merch-info {
+    min-width: 0;
+  }
+  .merch-name {
+    font-family: var(--font-condensed);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--black);
+  }
+  .merch-desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.75rem;
+    color: var(--gray-400);
+    margin-top: 2px;
+  }
+  .merch-price {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--black);
+    white-space: nowrap;
+  }
+
+  .merch-photo {
+    grid-column: 9 / 13;
+    padding-top: calc(var(--unit) * 3);
+  }
+  .merch-photo .img-bw {
+    aspect-ratio: 1/1;
+  }
+  .merch-photo-caption {
+    font-family: var(--font-condensed);
+    font-weight: 400;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--gray-400);
+    margin-top: calc(var(--unit) * 1);
+  }
+
+  /* ═══════════════════════════════════════
+     REVIEWS SECTION
+     ═══════════════════════════════════════ */
+  .reviews-section {
+    padding: calc(var(--unit) * 6) 0;
+  }
+
+  .reviews-header {
+    grid-column: 1 / -1;
+    padding-bottom: calc(var(--unit) * 2);
+  }
+  .reviews-header h2 {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    line-height: 1;
+  }
+
+  .review {
+    padding-top: calc(var(--unit) * 3);
+  }
+  .review-1 { grid-column: 1 / 5; }
+  .review-2 { grid-column: 5 / 9; }
+  .review-3 { grid-column: 9 / 13; }
+
+  .review-stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: calc(var(--unit) * 1);
+  }
+  .review-star {
+    width: 8px;
+    height: 8px;
+    background: var(--red);
+    display: inline-block;
+  }
+  .review-star.empty {
+    background: var(--gray-200);
+  }
+  .review-quote {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--gray-600);
+    margin-bottom: calc(var(--unit) * 2);
+  }
+  .review-attribution {
+    font-family: var(--font-condensed);
+    font-weight: 500;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gray-400);
+  }
+
+  /* ═══════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════ */
+  .footer {
+    padding: calc(var(--unit) * 4) 0 calc(var(--unit) * 6);
+  }
+
+  .footer-col {
+    padding-top: calc(var(--unit) * 3);
+  }
+  .footer-col-1 { grid-column: 1 / 5; }
+  .footer-col-2 { grid-column: 5 / 9; }
+  .footer-col-3 { grid-column: 9 / 13; }
+
+  .footer-label {
+    font-family: var(--font-condensed);
+    font-weight: 600;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: var(--gray-400);
+    margin-bottom: calc(var(--unit) * 1);
+  }
+  .footer-text {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--gray-600);
+  }
+  .footer-text a {
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-text a:hover {
+    color: var(--red);
+  }
+
+  .footer-copyright {
+    grid-column: 1 / -1;
+    padding-top: calc(var(--unit) * 4);
+    margin-top: calc(var(--unit) * 4);
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .footer-copyright p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.6875rem;
+    color: var(--gray-400);
+    letter-spacing: 0.05em;
+  }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════ */
+  @media (max-width: 960px) {
+    .grid-container {
+      grid-template-columns: repeat(8, 1fr);
+      padding: 0 calc(var(--unit) * 3);
+    }
+
+    .masthead-meta { grid-column: 1 / 4; }
+    .masthead-title { grid-column: 1 / 8; }
+    .masthead-logo { grid-column: 8 / 9; }
+    .masthead-issue { grid-column: 8 / 9; }
+    .masthead-tagline { grid-column: 1 / 6; }
+    .masthead-bg-number { font-size: 200px; right: -10px; }
+
+    .nav-brand { grid-column: 1 / 3; }
+    .nav-links { grid-column: 3 / 9; }
+
+    .menu-col-left { grid-column: 1 / 5; }
+    .menu-col-center { grid-column: 5 / 9; }
+    .menu-col-right { grid-column: 1 / 5; }
+    .menu-photo { grid-column: 5 / 9; }
+
+    .merch-index { grid-column: 1 / 6; }
+    .merch-photo { grid-column: 6 / 9; }
+
+    .review-1 { grid-column: 1 / 5; }
+    .review-2 { grid-column: 5 / 9; }
+    .review-3 { grid-column: 1 / 5; }
+
+    .footer-col-1 { grid-column: 1 / 4; }
+    .footer-col-2 { grid-column: 4 / 6; }
+    .footer-col-3 { grid-column: 6 / 9; }
+  }
+
+  @media (max-width: 640px) {
+    .grid-container {
+      grid-template-columns: repeat(4, 1fr);
+      padding: 0 calc(var(--unit) * 2);
+    }
+
+    .masthead-meta { grid-column: 1 / 3; }
+    .masthead-title { grid-column: 1 / -1; }
+    .masthead-title h1 { font-size: 56px; }
+    .masthead-title .subtitle { font-size: 18px; letter-spacing: 0.3em; }
+    .masthead-logo { grid-column: 3 / 5; }
+    .masthead-issue { grid-column: 3 / 5; }
+    .masthead-tagline { grid-column: 1 / -1; }
+    .masthead-bg-number { font-size: 140px; top: 0; }
+
+    .nav-brand { grid-column: 1 / 2; }
+    .nav-links {
+      grid-column: 2 / 5;
+      gap: calc(var(--unit) * 2);
+      flex-wrap: wrap;
+    }
+    .nav-links a { font-size: 0.5625rem; letter-spacing: 0.15em; }
+
+    .menu-header h2,
+    .merch-header h2,
+    .reviews-header h2 {
+      font-size: 2rem;
+      letter-spacing: 0.2em;
+    }
+
+    .menu-col-left,
+    .menu-col-center,
+    .menu-col-right,
+    .menu-photo {
+      grid-column: 1 / -1;
+    }
+    .menu-photo { grid-row: auto; }
+
+    .merch-index { grid-column: 1 / -1; }
+    .merch-photo { grid-column: 1 / 3; }
+
+    .review-1,
+    .review-2,
+    .review-3 {
+      grid-column: 1 / -1;
+    }
+
+    .footer-col-1,
+    .footer-col-2,
+    .footer-col-3 {
+      grid-column: 1 / -1;
+    }
+
+    .footer-copyright {
+      flex-direction: column;
+      gap: calc(var(--unit) * 1);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     MASTHEAD / HERO
+     ═══════════════════════════════════════ -->
+<header class="masthead">
+  <div class="masthead-bg-number" aria-hidden="true">1998</div>
+  <div class="grid-container">
+
+    <div class="masthead-meta">
+      <p class="label">Crested Butte, Colorado</p>
+      <p class="location">Rock &amp; Roll Deli &amp; Gas</p>
+    </div>
+
+    <div class="masthead-logo">
+      <img src="shared/images/logo-acdc.jpg" alt="Gas Cafe logo" />
+    </div>
+
+    <div class="masthead-title">
+      <h1>Gas Cafe</h1>
+      <p class="subtitle">One Stop</p>
+    </div>
+
+    <div class="masthead-issue">
+      <p class="numero">Est.</p>
+      <p class="year">1998</p>
+    </div>
+
+    <div class="masthead-tagline">
+      <p>A Crested Butte institution since 1998. Hand-pressed burgers, house-smoked meats, breakfast all day, and the kind of gas station deli that ruins every other gas station for you forever.</p>
+    </div>
+
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════ -->
+<nav class="nav-bar">
+  <div class="grid-container">
+    <a href="#" class="nav-brand">Gas Cafe</a>
+    <ul class="nav-links">
+      <li><a href="#menu" class="active">Menu</a></li>
+      <li><a href="#merchandise">Merchandise</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     MENU
+     ═══════════════════════════════════════ -->
+<section class="menu-section" id="menu">
+  <div class="grid-container">
+
+    <hr class="rule-heavy" />
+
+    <div class="menu-header">
+      <h2>Menu</h2>
+      <span class="menu-note">Served daily &mdash; breakfast all day</span>
+    </div>
+
+    <hr class="rule" />
+
+    <!-- Column 1: Breakfast / Classics -->
+    <div class="menu-col menu-col-left">
+      <div class="menu-col-header">Breakfast &amp; Classics</div>
+
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">McStop</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$7.19</span>
+        </div>
+        <div class="menu-item-desc">Egg, cheese, choice of meat on an english muffin</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">Hurley</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$8.39</span>
+        </div>
+        <div class="menu-item-desc">Scrambled eggs, green chile, pepper jack, flour tortilla</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">Triple Bypass</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$9.99</span>
+        </div>
+        <div class="menu-item-desc">Three eggs, triple meat, triple cheese, hash browns</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">Quad Bypass</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$10.99</span>
+        </div>
+        <div class="menu-item-desc">The triple, with a fourth patty for the fearless</div>
+      </div>
+    </div>
+
+    <!-- Photo -->
+    <div class="menu-photo">
+      <div class="img-duotone">
+        <img src="shared/images/food-hero.jpg" alt="Gas Cafe signature burger" />
+      </div>
+      <p class="menu-photo-caption">Hand-pressed daily &mdash; never frozen</p>
+    </div>
+
+    <!-- Column 2: Burgers -->
+    <div class="menu-col menu-col-right">
+      <div class="menu-col-header">Burgers &amp; Signatures</div>
+
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">Gasser</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$8.99</span>
+        </div>
+        <div class="menu-item-desc">Quarter-pound patty, lettuce, tomato, onion, pickles</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">P.H.G.</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$11.99</span>
+        </div>
+        <div class="menu-item-desc">Pepper jack, house green chile, grilled onion</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">New Yorker</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$11.99</span>
+        </div>
+        <div class="menu-item-desc">Pastrami, swiss, sauerkraut, thousand island</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">Truck Stop</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$11.99</span>
+        </div>
+        <div class="menu-item-desc">Double patty, bacon, cheddar, fried egg, BBQ</div>
+      </div>
+    </div>
+
+    <hr class="rule" style="margin-top: calc(var(--unit) * 2);" />
+
+    <!-- Full-width row for premium burgers -->
+    <div class="menu-col menu-col-left">
+      <div class="menu-col-header">Premium</div>
+
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">Working Man</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$14.39</span>
+        </div>
+        <div class="menu-item-desc">Half-pound patty, bacon, cheddar, onion rings, house sauce</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">Spicy Cowboy</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$16.59</span>
+        </div>
+        <div class="menu-item-desc">Pepper jack, jalapenos, chipotle mayo, crispy onion straws</div>
+      </div>
+    </div>
+
+    <!-- Deliberate empty cell -->
+    <div style="grid-column: 5 / 9;"></div>
+
+    <div class="menu-col menu-col-right">
+      <div class="menu-col-header">&nbsp;</div>
+
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">Euro Burger</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$16.59</span>
+        </div>
+        <div class="menu-item-desc">Brie, arugula, caramelized onion, fig spread, ciabatta</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-row">
+          <span class="menu-item-name">Pizza Burger</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$16.59</span>
+        </div>
+        <div class="menu-item-desc">Mozzarella, pepperoni, marinara, italian seasoning</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MERCHANDISE
+     ═══════════════════════════════════════ -->
+<section class="merch-section" id="merchandise">
+  <div class="grid-container">
+
+    <hr class="rule-heavy" />
+
+    <div class="merch-header">
+      <h2>Merchandise</h2>
+    </div>
+
+    <hr class="rule" />
+
+    <div class="merch-index">
+      <div class="merch-item">
+        <span class="merch-num">01</span>
+        <div class="merch-info">
+          <p class="merch-name">Gas Cafe Trucker Hat</p>
+          <p class="merch-desc">Snapback, embroidered logo, one size fits all</p>
+        </div>
+        <span class="merch-price">$28.00</span>
+      </div>
+      <div class="merch-item">
+        <span class="merch-num">02</span>
+        <div class="merch-info">
+          <p class="merch-name">Gas Cafe Dad Hat</p>
+          <p class="merch-desc">Low-profile, adjustable strap, washed cotton</p>
+        </div>
+        <span class="merch-price">$26.00</span>
+      </div>
+      <div class="merch-item">
+        <span class="merch-num">03</span>
+        <div class="merch-info">
+          <p class="merch-name">Classic Logo Hoodie</p>
+          <p class="merch-desc">Heavyweight fleece, screen-printed front and back</p>
+        </div>
+        <span class="merch-price">$55.00</span>
+      </div>
+      <div class="merch-item">
+        <span class="merch-num">04</span>
+        <div class="merch-info">
+          <p class="merch-name">Koozie 2-Pack</p>
+          <p class="merch-desc">Neoprene, fits standard cans, Gas Cafe logo</p>
+        </div>
+        <span class="merch-price">$8.00</span>
+      </div>
+      <div class="merch-item">
+        <span class="merch-num">05</span>
+        <div class="merch-info">
+          <p class="merch-name">Bumper Sticker</p>
+          <p class="merch-desc">Vinyl, weatherproof, 6" x 2"</p>
+        </div>
+        <span class="merch-price">$4.00</span>
+      </div>
+      <div class="merch-item">
+        <span class="merch-num">06</span>
+        <div class="merch-info">
+          <p class="merch-name">Gas Cafe Tee</p>
+          <p class="merch-desc">100% cotton, vintage fit, AC/DC-style graphic</p>
+        </div>
+        <span class="merch-price">$30.00</span>
+      </div>
+    </div>
+
+    <div class="merch-photo">
+      <div class="img-bw">
+        <img src="shared/images/merch-hats.jpg" alt="Gas Cafe merchandise hats" />
+      </div>
+      <p class="merch-photo-caption">Gas Cafe branded headwear</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     REVIEWS
+     ═══════════════════════════════════════ -->
+<section class="reviews-section" id="reviews">
+  <div class="grid-container">
+
+    <hr class="rule-heavy" />
+
+    <div class="reviews-header">
+      <h2>Voices</h2>
+    </div>
+
+    <hr class="rule" />
+
+    <div class="review review-1">
+      <div class="review-stars">
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+      </div>
+      <p class="review-quote">"Best burger in Crested Butte, hands down. The Triple Bypass is no joke. We stop here every single time we drive through, and we've rearranged road trips just to make it happen."</p>
+      <p class="review-attribution">&mdash; Jake M., Denver</p>
+    </div>
+
+    <div class="review review-2">
+      <div class="review-stars">
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+      </div>
+      <p class="review-quote">"A gas station deli shouldn't be this good. The green chile is the real deal. Breakfast burritos that put half of New Mexico on notice. Hidden gem doesn't begin to cover it."</p>
+      <p class="review-attribution">&mdash; Sarah L., Albuquerque</p>
+    </div>
+
+    <div class="review review-3">
+      <div class="review-stars">
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+        <span class="review-star"></span>
+        <span class="review-star empty"></span>
+      </div>
+      <p class="review-quote">"Came for gas, stayed for the burger. The Working Man lives up to its name. Rock and roll on the speakers, AC/DC on the walls. This is what America should taste like."</p>
+      <p class="review-attribution">&mdash; Tom R., Gunnison</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════ -->
+<footer class="footer" id="contact">
+  <div class="grid-container">
+
+    <hr class="rule-heavy" />
+
+    <div class="footer-col footer-col-1">
+      <p class="footer-label">Location</p>
+      <p class="footer-text">
+        Gas Cafe One Stop<br>
+        6 Emmons Road<br>
+        Mt. Crested Butte, CO 81225
+      </p>
+    </div>
+
+    <div class="footer-col footer-col-2">
+      <p class="footer-label">Hours</p>
+      <p class="footer-text">
+        Mon&ndash;Fri: 5:30am&ndash;9:00pm<br>
+        Saturday: 6:00am&ndash;9:00pm<br>
+        Sunday: 6:00am&ndash;8:00pm
+      </p>
+    </div>
+
+    <div class="footer-col footer-col-3">
+      <p class="footer-label">Contact</p>
+      <p class="footer-text">
+        <a href="tel:+19703491498">(970) 349-1498</a><br>
+        <a href="mailto:info@gascafeonestop.com">info@gascafeonestop.com</a><br>
+        <a href="#">@gascafeonestop</a>
+      </p>
+    </div>
+
+    <div class="footer-copyright">
+      <p>&copy; 2024 Gas Cafe One Stop. All rights reserved.</p>
+      <p style="font-family: var(--font-condensed); font-weight: 500; font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--gray-300);">Mockup 10 &mdash; Swiss Grid</p>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>

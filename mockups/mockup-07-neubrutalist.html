@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gas Cafe — Mockup 7: Neubrutalist Diner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Epilogue:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'nb-yellow': '#FFEB3B',
+        'nb-red': '#FF5252',
+        'nb-blue': '#2196F3',
+        'nb-black': '#000000',
+        'nb-white': '#FFFFFF',
+      },
+      fontFamily: {
+        'anton': ['Anton', 'sans-serif'],
+        'epilogue': ['Epilogue', 'sans-serif'],
+      },
+    },
+  },
+}
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Epilogue', sans-serif;
+    background: #FFFDE7;
+    color: #000;
+  }
+
+  .nb-border { border: 3px solid #000; }
+  .nb-shadow { box-shadow: 5px 5px 0 #000; }
+  .nb-shadow-sm { box-shadow: 3px 3px 0 #000; }
+
+  .nb-btn {
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0 #000;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.05s linear;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .nb-btn:hover {
+    box-shadow: 2px 2px 0 #000;
+    transform: translate(3px, 3px);
+  }
+
+  .nb-btn:active {
+    box-shadow: 0 0 0 #000;
+    transform: translate(5px, 5px);
+  }
+
+  .sticker {
+    display: inline-block;
+    border: 3px solid #000;
+    padding: 8px 20px;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    background: #FF5252;
+    color: #FFF;
+    transform: rotate(-4deg);
+    box-shadow: 3px 3px 0 #000;
+  }
+
+  .badge {
+    display: inline-block;
+    border: 3px solid #000;
+    padding: 6px 16px;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    background: #2196F3;
+    color: #FFF;
+    box-shadow: 3px 3px 0 #000;
+  }
+
+  /* Menu classified style */
+  .menu-item {
+    border: 3px solid #000;
+    padding: 12px 16px;
+    background: #FFF;
+    position: relative;
+  }
+
+  .menu-item .price {
+    color: #FF5252;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.3rem;
+  }
+
+  .menu-item .item-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  /* Torn paper effect for reviews */
+  .torn-paper {
+    background: #FFF;
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0 #000;
+    position: relative;
+    clip-path: polygon(
+      0% 0%, 3% 1%, 6% 0%, 9% 1.5%, 12% 0%, 15% 0.5%, 18% 0%, 21% 1%, 24% 0.5%, 27% 0%, 30% 1%, 33% 0%, 36% 1.5%, 39% 0%, 42% 0.5%, 45% 0%, 48% 1%, 51% 0%, 54% 1.5%, 57% 0%, 60% 0.5%, 63% 0%, 66% 1%, 69% 0%, 72% 1.5%, 75% 0%, 78% 0.5%, 81% 0%, 84% 1%, 87% 0%, 90% 1.5%, 93% 0%, 96% 0.5%, 100% 0%,
+      100% 100%, 97% 99%, 94% 100%, 91% 98.5%, 88% 100%, 85% 99.5%, 82% 100%, 79% 99%, 76% 99.5%, 73% 100%, 70% 99%, 67% 100%, 64% 98.5%, 61% 100%, 58% 99.5%, 55% 100%, 52% 99%, 49% 100%, 46% 98.5%, 43% 100%, 40% 99.5%, 37% 100%, 34% 99%, 31% 100%, 28% 98.5%, 25% 100%, 22% 99.5%, 19% 100%, 16% 99%, 13% 100%, 10% 98.5%, 7% 100%, 4% 99.5%, 0% 100%
+    );
+  }
+
+  /* Nav links */
+  nav a {
+    font-family: 'Anton', sans-serif;
+    color: #FFF;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    padding: 12px 20px;
+    display: inline-block;
+    border-right: 2px solid #333;
+    transition: background 0.05s linear;
+  }
+
+  nav a:last-child { border-right: none; }
+
+  nav a:hover {
+    background: #FFEB3B;
+    color: #000;
+  }
+
+  /* Merch placeholder boxes */
+  .merch-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 3px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  /* Newspaper header dashes */
+  .newspaper-rule {
+    border: none;
+    border-top: 3px solid #000;
+    margin: 0;
+  }
+
+  .newspaper-rule-double {
+    border: none;
+    border-top: 6px double #000;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    nav a {
+      font-size: 1rem;
+      padding: 10px 14px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ════════════════════════════════════════════════ -->
+<section style="background: #FFEB3B;" class="relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 relative">
+
+    <!-- Tilted badge: Crested Butte, CO -->
+    <div class="absolute top-6 right-6 md:top-10 md:right-16 z-10" style="transform: rotate(8deg);">
+      <div class="badge text-lg md:text-xl">Crested Butte, CO</div>
+    </div>
+
+    <!-- Giant headline -->
+    <h1 class="font-anton text-[5rem] md:text-[10rem] lg:text-[14rem] leading-[0.85] tracking-tight text-nb-black uppercase select-none" style="font-family: 'Anton', sans-serif;">
+      GAS<span style="display:inline-block; transform: scaleY(1.1); color: #FF5252;">&#9889;</span>CAFE
+    </h1>
+
+    <!-- Sub-line -->
+    <div class="mt-6 md:mt-8 flex flex-wrap items-center gap-4">
+      <div class="sticker text-lg md:text-xl" style="transform: rotate(-3deg);">
+        Grillin' High Since 1998
+      </div>
+      <div class="sticker text-base md:text-lg" style="background: #000; transform: rotate(2deg);">
+        One Stop
+      </div>
+    </div>
+
+    <!-- Decorative border strips -->
+    <div class="absolute bottom-0 left-0 right-0 h-4 bg-nb-black"></div>
+    <div class="absolute top-0 left-0 right-0 h-4 bg-nb-black"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- NAV -->
+<!-- ════════════════════════════════════════════════ -->
+<nav class="bg-nb-black flex flex-wrap" style="border-bottom: 3px solid #000;">
+  <a href="#menu">Menu</a>
+  <a href="#shop">Shop</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#footer">Find Us</a>
+</nav>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- MENU SECTION -->
+<!-- ════════════════════════════════════════════════ -->
+<section id="menu" class="py-16 md:py-24 px-6" style="background: #FFFDE7;">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Section header, newspaper style -->
+    <hr class="newspaper-rule-double mb-4">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 mb-2">
+      <h2 class="font-anton text-5xl md:text-7xl uppercase" style="font-family: 'Anton', sans-serif;">The Menu</h2>
+      <span class="font-epilogue text-sm font-bold uppercase tracking-widest">Gas Cafe One Stop &mdash; Est. 1998</span>
+    </div>
+    <hr class="newspaper-rule mb-10">
+
+    <!-- Food hero image -->
+    <div class="nb-border nb-shadow mb-12 overflow-hidden" style="transform: rotate(-1deg); max-width: 600px;">
+      <img src="shared/images/food-hero.jpg" alt="Gas Cafe food" class="w-full block" style="display: block;">
+    </div>
+
+    <!-- BREAKFAST -->
+    <div class="mb-12">
+      <div class="inline-block mb-6" style="transform: rotate(-1deg);">
+        <h3 class="font-anton text-3xl md:text-5xl uppercase nb-border bg-nb-red text-white px-6 py-2 nb-shadow-sm inline-block" style="font-family: 'Anton', sans-serif;">
+          Breakfast
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+        <!-- McStop -->
+        <div class="menu-item">
+          <div class="item-name">McStop</div>
+          <div class="price">$7.19</div>
+        </div>
+        <!-- Hurley -->
+        <div class="menu-item">
+          <div class="item-name">Hurley</div>
+          <div class="price">$8.39</div>
+        </div>
+        <!-- Triple Bypass -->
+        <div class="menu-item">
+          <div class="item-name">Triple Bypass</div>
+          <div class="price">$9.99</div>
+        </div>
+        <!-- Quad Bypass -->
+        <div class="menu-item">
+          <div class="item-name">Quad Bypass</div>
+          <div class="price">$10.99</div>
+        </div>
+        <!-- Gasser -->
+        <div class="menu-item">
+          <div class="item-name">Gasser</div>
+          <div class="price">$8.99</div>
+        </div>
+        <!-- P.H.G. -->
+        <div class="menu-item">
+          <div class="item-name">P.H.G.</div>
+          <div class="price">$11.99</div>
+        </div>
+        <!-- New Yorker -->
+        <div class="menu-item">
+          <div class="item-name">New Yorker</div>
+          <div class="price">$11.99</div>
+        </div>
+        <!-- Truck Stop -->
+        <div class="menu-item">
+          <div class="item-name">Truck Stop</div>
+          <div class="price">$11.99</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BURGERS -->
+    <div>
+      <div class="inline-block mb-6" style="transform: rotate(1deg);">
+        <h3 class="font-anton text-3xl md:text-5xl uppercase nb-border bg-nb-blue text-white px-6 py-2 nb-shadow-sm inline-block" style="font-family: 'Anton', sans-serif;">
+          Burgers
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+        <!-- Working Man -->
+        <div class="menu-item">
+          <div class="item-name">Working Man</div>
+          <div class="price">$14.39</div>
+        </div>
+        <!-- Spicy Cowboy -->
+        <div class="menu-item">
+          <div class="item-name">Spicy Cowboy</div>
+          <div class="price">$16.59</div>
+        </div>
+        <!-- Euro Burger -->
+        <div class="menu-item">
+          <div class="item-name">Euro Burger</div>
+          <div class="price">$16.59</div>
+        </div>
+        <!-- Pizza Burger -->
+        <div class="menu-item">
+          <div class="item-name">Pizza Burger</div>
+          <div class="price">$16.59</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- SHOP SECTION -->
+<!-- ════════════════════════════════════════════════ -->
+<section id="shop" class="py-16 md:py-24 px-6" style="background: #FFF;">
+  <div class="max-w-6xl mx-auto">
+
+    <hr class="newspaper-rule-double mb-4">
+    <h2 class="font-anton text-5xl md:text-7xl uppercase mb-2" style="font-family: 'Anton', sans-serif;">The Shop</h2>
+    <hr class="newspaper-rule mb-12">
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+      <!-- Trucker Hats (real image) -->
+      <div class="nb-border nb-shadow bg-white" style="transform: rotate(-2deg);">
+        <div class="overflow-hidden nb-border" style="border-top: none; border-left: none; border-right: none;">
+          <img src="shared/images/merch-hats.jpg" alt="Trucker Hats" class="w-full block">
+        </div>
+        <div class="p-4">
+          <div class="font-anton text-xl uppercase" style="font-family: 'Anton', sans-serif;">Trucker Hats</div>
+          <a href="#" class="nb-btn bg-nb-yellow text-nb-black text-sm mt-3" style="padding: 8px 16px; font-size: 0.85rem;">Buy Now</a>
+        </div>
+      </div>
+
+      <!-- Hoodie -->
+      <div class="nb-border nb-shadow bg-white" style="transform: rotate(1.5deg);">
+        <div class="merch-placeholder" style="background: #E0E0E0;">
+          Hoodie
+        </div>
+        <div class="p-4">
+          <div class="font-anton text-xl uppercase" style="font-family: 'Anton', sans-serif;">Hoodie</div>
+          <a href="#" class="nb-btn bg-nb-red text-white text-sm mt-3" style="padding: 8px 16px; font-size: 0.85rem;">Buy Now</a>
+        </div>
+      </div>
+
+      <!-- Cooler Bag -->
+      <div class="nb-border nb-shadow bg-white" style="transform: rotate(-1deg);">
+        <div class="merch-placeholder" style="background: #BBDEFB;">
+          Cooler Bag
+        </div>
+        <div class="p-4">
+          <div class="font-anton text-xl uppercase" style="font-family: 'Anton', sans-serif;">Cooler Bag</div>
+          <a href="#" class="nb-btn bg-nb-blue text-white text-sm mt-3" style="padding: 8px 16px; font-size: 0.85rem;">Buy Now</a>
+        </div>
+      </div>
+
+      <!-- Koozie -->
+      <div class="nb-border nb-shadow bg-white" style="transform: rotate(2deg);">
+        <div class="merch-placeholder" style="background: #FFF9C4;">
+          Koozie
+        </div>
+        <div class="p-4">
+          <div class="font-anton text-xl uppercase" style="font-family: 'Anton', sans-serif;">Koozie</div>
+          <a href="#" class="nb-btn bg-nb-yellow text-nb-black text-sm mt-3" style="padding: 8px 16px; font-size: 0.85rem;">Buy Now</a>
+        </div>
+      </div>
+
+      <!-- Stickers -->
+      <div class="nb-border nb-shadow bg-white" style="transform: rotate(-1.5deg);">
+        <div class="merch-placeholder" style="background: #FFCDD2;">
+          Stickers
+        </div>
+        <div class="p-4">
+          <div class="font-anton text-xl uppercase" style="font-family: 'Anton', sans-serif;">Stickers</div>
+          <a href="#" class="nb-btn bg-nb-black text-white text-sm mt-3" style="padding: 8px 16px; font-size: 0.85rem;">Buy Now</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- REVIEWS SECTION -->
+<!-- ════════════════════════════════════════════════ -->
+<section id="reviews" class="py-16 md:py-24 px-6" style="background: #FFEB3B;">
+  <div class="max-w-5xl mx-auto">
+
+    <h2 class="font-anton text-5xl md:text-7xl uppercase mb-12 text-center" style="font-family: 'Anton', sans-serif;">
+      What People Say
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-10">
+
+      <!-- Review 1 -->
+      <div class="torn-paper p-8 md:p-10" style="transform: rotate(-1deg);">
+        <div class="font-anton text-6xl text-nb-red leading-none mb-2" style="font-family: 'Anton', sans-serif;">&ldquo;</div>
+        <p class="font-epilogue text-lg md:text-xl font-bold leading-relaxed mb-4">
+          Best breakfast sandwich I've ever had!
+        </p>
+        <div class="font-anton text-base uppercase tracking-wider" style="font-family: 'Anton', sans-serif;">
+          &mdash; Laura S.
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="torn-paper p-8 md:p-10" style="transform: rotate(1.5deg);">
+        <div class="font-anton text-6xl text-nb-blue leading-none mb-2" style="font-family: 'Anton', sans-serif;">&ldquo;</div>
+        <p class="font-epilogue text-lg md:text-xl font-bold leading-relaxed mb-4">
+          Best burgers in CB hands down
+        </p>
+        <div class="font-anton text-base uppercase tracking-wider" style="font-family: 'Anton', sans-serif;">
+          &mdash; Kristin C.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ════════════════════════════════════════════════ -->
+<footer id="footer" class="bg-nb-black text-white py-16 px-6" style="border-top: 6px solid #FF5252;">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="grid md:grid-cols-3 gap-10 items-start">
+
+      <!-- Logo + Brand -->
+      <div>
+        <div class="nb-border inline-block mb-4" style="border-color: #FFF;">
+          <img src="shared/images/logo-acdc.jpg" alt="Gas Cafe Logo" style="width: 160px; display: block;">
+        </div>
+        <div class="font-anton text-2xl uppercase mt-2" style="font-family: 'Anton', sans-serif;">Gas Cafe One Stop</div>
+      </div>
+
+      <!-- Address + Phone -->
+      <div>
+        <h3 class="font-anton text-xl uppercase mb-4 text-nb-yellow" style="font-family: 'Anton', sans-serif;">Find Us</h3>
+        <p class="font-epilogue text-lg font-bold leading-relaxed">
+          602 Butte Ave<br>
+          Crested Butte, CO 81225
+        </p>
+        <p class="font-epilogue text-lg font-bold mt-3">
+          <a href="tel:9703490424" class="text-nb-yellow no-underline hover:underline">970-349-0424</a>
+        </p>
+      </div>
+
+      <!-- Hours -->
+      <div>
+        <h3 class="font-anton text-xl uppercase mb-4 text-nb-yellow" style="font-family: 'Anton', sans-serif;">Hours</h3>
+        <div class="font-epilogue text-lg font-bold leading-relaxed">
+          <p>Mon&ndash;Fri: 7am &ndash; 3pm</p>
+          <p>Sat&ndash;Sun: 8am &ndash; 3pm</p>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="my-10" style="border-color: #333;">
+
+    <p class="font-epilogue text-sm text-center" style="color: #888;">
+      &copy; 2025 Gas Cafe One Stop. All rights reserved. Grillin' High Since 1998.
+    </p>
+
+  </div>
+</footer>
+
+</body>
+</html>

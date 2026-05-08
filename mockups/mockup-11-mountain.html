@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gas Cafe One Stop — Mockup 11: Mountain Highway</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwindcss.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#FFFDF7',
+          'warm-stone': '#E8E0D4',
+          forest: '#2D4A3E',
+          'forest-dark': '#1E3529',
+          'sunset-red': '#C0392B',
+          'sunset-red-light': '#D94E41',
+          golden: '#D4A843',
+          'golden-light': '#E0BC60',
+          'golden-dark': '#B8923A',
+          'deep-night': '#1A1A2E',
+          'warm-beige': '#F5EFE6',
+          'warm-taupe': '#A89888',
+        },
+        fontFamily: {
+          playfair: ['"Playfair Display"', 'Georgia', 'serif'],
+          karla: ['Karla', 'system-ui', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Karla', system-ui, sans-serif;
+    color: #2D4A3E;
+    background: #FFFDF7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Smooth nav transition ── */
+  nav {
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  nav.scrolled {
+    background: rgba(255, 253, 247, 0.92) !important;
+    box-shadow: 0 1px 20px rgba(45, 74, 62, 0.08);
+  }
+
+  /* ── Scroll indicator bounce ── */
+  @keyframes softBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  .scroll-indicator {
+    animation: softBounce 2.5s ease-in-out infinite;
+  }
+
+  /* ── Section wave dividers ── */
+  .wave-divider {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .wave-divider svg {
+    display: block;
+    width: 100%;
+    height: 60px;
+  }
+  .wave-divider-flip svg {
+    transform: rotate(180deg);
+  }
+
+  /* ── Menu card hover ── */
+  .menu-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .menu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(45, 74, 62, 0.12);
+  }
+
+  /* ── Product card hover ── */
+  .product-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(45, 74, 62, 0.12);
+  }
+
+  /* ── Review card border accent ── */
+  .review-card {
+    border-left: 4px solid #D4A843;
+    transition: transform 0.25s ease;
+  }
+  .review-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* ── Golden CTA buttons ── */
+  .btn-golden {
+    background: linear-gradient(135deg, #D4A843, #E0BC60);
+    color: #2D4A3E;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 14px 36px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(212, 168, 67, 0.3);
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-golden:hover {
+    background: linear-gradient(135deg, #E0BC60, #EDD07A);
+    box-shadow: 0 6px 24px rgba(212, 168, 67, 0.4);
+    transform: translateY(-1px);
+  }
+  .btn-golden:active {
+    transform: translateY(0);
+  }
+
+  .btn-forest {
+    background: #2D4A3E;
+    color: #FFFDF7;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 12px 28px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    font-family: 'Karla', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-forest:hover {
+    background: #1E3529;
+    transform: translateY(-1px);
+  }
+
+  .btn-golden-sm {
+    background: linear-gradient(135deg, #D4A843, #E0BC60);
+    color: #2D4A3E;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 10px 24px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 10px rgba(212, 168, 67, 0.25);
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-golden-sm:hover {
+    background: linear-gradient(135deg, #E0BC60, #EDD07A);
+    box-shadow: 0 4px 16px rgba(212, 168, 67, 0.35);
+    transform: translateY(-1px);
+  }
+
+  /* ── Star rating ── */
+  .star { color: #D4A843; }
+
+  /* ── Responsive hamburger ── */
+  .hamburger { display: none; }
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links-desktop { display: none !important; }
+    .nav-cta-desktop { display: none !important; }
+  }
+
+  /* ── Mobile nav overlay ── */
+  .mobile-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 253, 247, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .mobile-nav.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .mobile-nav a {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #2D4A3E;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-nav a:hover { color: #C0392B; }
+  .mobile-nav-close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    background: none; border: none;
+    font-size: 28px; color: #2D4A3E;
+    cursor: pointer;
+  }
+
+  /* ── Hero image warm overlay ── */
+  .hero-food-img {
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(45, 74, 62, 0.15);
+    filter: saturate(1.05) brightness(1.02);
+  }
+
+  /* ── Map placeholder ── */
+  .map-placeholder {
+    background: linear-gradient(135deg, #E8E0D4, #d4cbbf);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
+  }
+  .map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(45,74,62,0.04) 40px, rgba(45,74,62,0.04) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(45,74,62,0.04) 40px, rgba(45,74,62,0.04) 41px);
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- NAV                                             -->
+<!-- ════════════════════════════════════════════════ -->
+<nav id="mainNav" class="fixed top-0 left-0 right-0 z-50 bg-transparent">
+  <div class="max-w-6xl mx-auto flex items-center justify-between px-6 h-16 lg:h-20">
+    <!-- Logo -->
+    <a href="#hero" class="flex items-center gap-3">
+      <img src="shared/images/logo-acdc.jpg" alt="Gas Cafe" class="h-10 w-10 rounded-full object-cover shadow-md">
+      <span class="font-playfair text-lg font-bold text-forest tracking-wide hidden sm:inline">Gas Cafe</span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links-desktop flex items-center gap-8 list-none">
+      <li><a href="#about" class="font-karla text-sm font-medium text-forest/70 hover:text-forest transition-colors">The Stop</a></li>
+      <li><a href="#menu" class="font-karla text-sm font-medium text-forest/70 hover:text-forest transition-colors">Menu</a></li>
+      <li><a href="#shop" class="font-karla text-sm font-medium text-forest/70 hover:text-forest transition-colors">Shop</a></li>
+      <li><a href="#reviews" class="font-karla text-sm font-medium text-forest/70 hover:text-forest transition-colors">Reviews</a></li>
+      <li><a href="#visit" class="font-karla text-sm font-medium text-forest/70 hover:text-forest transition-colors">Visit</a></li>
+    </ul>
+
+    <!-- Desktop CTA -->
+    <a href="#menu" class="nav-cta-desktop btn-forest text-sm !py-2 !px-5">See the Menu</a>
+
+    <!-- Hamburger -->
+    <button class="hamburger flex-col items-center justify-center gap-1.5 p-2" onclick="document.getElementById('mobileNav').classList.add('open')" aria-label="Open menu">
+      <span class="block w-6 h-0.5 bg-forest rounded"></span>
+      <span class="block w-6 h-0.5 bg-forest rounded"></span>
+      <span class="block w-6 h-0.5 bg-forest rounded"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav overlay -->
+<div id="mobileNav" class="mobile-nav">
+  <button class="mobile-nav-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close menu">&times;</button>
+  <a href="#about" onclick="this.parentElement.classList.remove('open')">The Stop</a>
+  <a href="#menu" onclick="this.parentElement.classList.remove('open')">Menu</a>
+  <a href="#shop" onclick="this.parentElement.classList.remove('open')">Shop</a>
+  <a href="#reviews" onclick="this.parentElement.classList.remove('open')">Reviews</a>
+  <a href="#visit" onclick="this.parentElement.classList.remove('open')">Visit</a>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- HERO                                            -->
+<!-- ════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style="background: linear-gradient(175deg, #FFFDF7 0%, #F5EFE6 40%, #EDE2D0 70%, #E8D9C4 100%);">
+  <!-- Subtle mountain silhouette decoration -->
+  <div class="absolute bottom-0 left-0 right-0 opacity-[0.04] pointer-events-none">
+    <svg viewBox="0 0 1440 320" class="w-full" preserveAspectRatio="none">
+      <path fill="#2D4A3E" d="M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,218.7C672,213,768,171,864,154.7C960,139,1056,149,1152,165.3C1248,181,1344,203,1392,213.3L1440,224L1440,320L0,320Z"/>
+    </svg>
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center text-center px-6 pt-24 pb-16">
+    <!-- Logo -->
+    <div class="mb-8 relative">
+      <div class="absolute -inset-4 bg-golden/10 rounded-full blur-2xl"></div>
+      <img src="shared/images/logo-acdc.jpg" alt="Gas Cafe One Stop" class="relative w-40 h-40 md:w-52 md:h-52 rounded-2xl object-cover shadow-xl" style="filter: saturate(1.05) brightness(1.02);">
+    </div>
+
+    <!-- Tagline -->
+    <h1 class="font-playfair italic text-4xl md:text-5xl lg:text-6xl text-forest font-bold leading-tight mb-5" style="max-width: 600px;">
+      Grillin' High<br>in the Rockies
+    </h1>
+
+    <!-- Subline -->
+    <p class="font-karla text-warm-taupe text-base md:text-lg tracking-widest uppercase mb-10">
+      Since 1998 &middot; Crested Butte, Colorado
+    </p>
+
+    <!-- CTA -->
+    <a href="#menu" class="btn-golden text-base md:text-lg">
+      See the Menu
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </a>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 scroll-indicator">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A89888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- WAVE: cream to white                            -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="wave-divider" style="background: #FFFDF7;">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+    <path fill="#FFFDF7" d="M0,0 C360,60 1080,60 1440,0 L1440,60 L0,60Z"/>
+  </svg>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- ABOUT / "THE STOP"                              -->
+<!-- ════════════════════════════════════════════════ -->
+<section id="about" class="bg-cream py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Text -->
+      <div class="order-2 md:order-1">
+        <p class="font-karla text-golden-dark uppercase tracking-[0.2em] text-sm font-semibold mb-4">Est. 1998</p>
+        <h2 class="font-playfair text-3xl md:text-4xl lg:text-5xl text-forest font-bold mb-6 leading-tight">The Stop</h2>
+        <p class="font-karla text-forest/80 text-lg leading-relaxed mb-6">
+          More than a gas station &mdash; a Crested Butte institution since 1998. Killer breakfast sandwiches, the best burgers in the Butte, and rock &amp; roll on the stereo.
+        </p>
+        <p class="font-karla text-forest/60 text-base leading-relaxed mb-8">
+          Perched at 8,885 feet in the heart of Colorado's last great ski town, Gas Cafe One Stop has been fueling adventures (and appetites) for over two decades. Stop in for gas, stay for the food, leave with a story.
+        </p>
+        <a href="#menu" class="btn-forest">
+          Explore the Menu
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Image -->
+      <div class="order-1 md:order-2 relative">
+        <div class="absolute -inset-4 bg-golden/10 rounded-3xl blur-2xl -z-10"></div>
+        <img src="shared/images/food-hero.jpg" alt="Delicious food from Gas Cafe" class="hero-food-img w-full aspect-[4/3] object-cover">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- WAVE: cream to warm-stone                       -->
+<!-- ════════════════════════════════════════════════ -->
+<div style="background: #FFFDF7;">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="block w-full" style="height: 60px;">
+    <path fill="#FFFDF7" d="M0,0 C480,80 960,80 1440,0 L1440,80 L0,80Z" />
+    <path fill="#FFFDF7" d="M0,80 L1440,80" />
+  </svg>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- MENU                                            -->
+<!-- ════════════════════════════════════════════════ -->
+<section id="menu" class="bg-cream py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <p class="font-karla text-golden-dark uppercase tracking-[0.2em] text-sm font-semibold mb-3">Good Eats</p>
+      <h2 class="font-playfair text-4xl md:text-5xl text-forest font-bold mb-4">From the Kitchen</h2>
+      <p class="font-karla text-forest/60 text-base max-w-md mx-auto">Scratch-made, mountain-sized portions. Fueling Crested Butte since '98.</p>
+    </div>
+
+    <!-- Menu grid -->
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-10">
+
+      <!-- BREAKFAST -->
+      <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-md">
+        <div class="bg-forest px-6 py-4">
+          <h3 class="font-playfair text-cream text-xl font-bold">Breakfast</h3>
+          <p class="font-karla text-cream/60 text-sm mt-0.5">Served 'til 11:30 AM</p>
+        </div>
+        <div class="p-6 space-y-4">
+          <!-- Item -->
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">McStop</p>
+              <p class="font-karla text-forest/50 text-sm">Egg, cheese &amp; your choice of meat on an English muffin</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$7.19</span>
+          </div>
+          <div class="border-b border-warm-stone/50"></div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">Hurley</p>
+              <p class="font-karla text-forest/50 text-sm">Scrambled eggs, green chili, cheese on a flour tortilla</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$8.39</span>
+          </div>
+          <div class="border-b border-warm-stone/50"></div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">Triple Bypass</p>
+              <p class="font-karla text-forest/50 text-sm">Three eggs, three meats, three cheeses on a hoagie</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$9.99</span>
+          </div>
+          <div class="border-b border-warm-stone/50"></div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">Quad Bypass</p>
+              <p class="font-karla text-forest/50 text-sm">The Triple Bypass, but more of everything</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$10.99</span>
+          </div>
+          <div class="border-b border-warm-stone/50"></div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">Gasser</p>
+              <p class="font-karla text-forest/50 text-sm">Eggs, sausage gravy &amp; cheese on a fresh biscuit</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$8.99</span>
+          </div>
+          <div class="border-b border-warm-stone/50"></div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">P.H.G.</p>
+              <p class="font-karla text-forest/50 text-sm">Pork, ham &amp; green chili smothered breakfast burrito</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$11.99</span>
+          </div>
+          <div class="border-b border-warm-stone/50"></div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">New Yorker</p>
+              <p class="font-karla text-forest/50 text-sm">Eggs, pastrami, Swiss &amp; mustard on rye</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$11.99</span>
+          </div>
+          <div class="border-b border-warm-stone/50"></div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">Truck Stop</p>
+              <p class="font-karla text-forest/50 text-sm">The works &mdash; loaded breakfast hoagie, everything on it</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$11.99</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BURGERS & FRIES -->
+      <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-md">
+        <div class="bg-forest px-6 py-4">
+          <h3 class="font-playfair text-cream text-xl font-bold">Burgers &amp; Fries</h3>
+          <p class="font-karla text-cream/60 text-sm mt-0.5">Hand-formed, cooked to order</p>
+        </div>
+        <div class="p-6 space-y-4">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">Working Man</p>
+              <p class="font-karla text-forest/50 text-sm">Classic cheeseburger with all the fixings &amp; fries</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$14.39</span>
+          </div>
+          <div class="border-b border-warm-stone/50"></div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">Spicy Cowboy</p>
+              <p class="font-karla text-forest/50 text-sm">Pepper jack, jalape&ntilde;os, chipotle mayo, onion rings &amp; fries</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$16.59</span>
+          </div>
+          <div class="border-b border-warm-stone/50"></div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">Euro Burger</p>
+              <p class="font-karla text-forest/50 text-sm">Brie, arugula, fig jam, caramelized onions &amp; fries</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$16.59</span>
+          </div>
+          <div class="border-b border-warm-stone/50"></div>
+
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p class="font-karla font-semibold text-forest">Pizza Burger</p>
+              <p class="font-karla text-forest/50 text-sm">Marinara, mozzarella, pepperoni, Italian seasoning &amp; fries</p>
+            </div>
+            <span class="font-karla font-bold text-sunset-red whitespace-nowrap">$16.59</span>
+          </div>
+        </div>
+
+        <!-- Filler illustration area to balance card height -->
+        <div class="px-6 pb-6 pt-4">
+          <div class="bg-warm-beige rounded-xl p-6 text-center">
+            <p class="font-playfair italic text-forest/40 text-lg">"Best burgers in the Butte."</p>
+            <p class="font-karla text-forest/30 text-sm mt-2">&mdash; Everyone who's tried one</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- WAVE: cream to warm-stone                       -->
+<!-- ════════════════════════════════════════════════ -->
+<div style="background: #FFFDF7;">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="block w-full" style="height: 60px;">
+    <path fill="#E8E0D4" d="M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80Z"/>
+    <path fill="#FFFDF7" d="M0,0 L1440,0 L1440,80 C360,0 1080,0 0,80Z"/>
+  </svg>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- SHOP / GENERAL STORE                            -->
+<!-- ════════════════════════════════════════════════ -->
+<section id="shop" class="py-20 md:py-28" style="background: #E8E0D4;">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <p class="font-karla text-golden-dark uppercase tracking-[0.2em] text-sm font-semibold mb-3">Gear Up</p>
+      <h2 class="font-playfair text-4xl md:text-5xl text-forest font-bold mb-4">The General Store</h2>
+      <p class="font-karla text-forest/60 text-base max-w-md mx-auto">Take a piece of Gas Cafe home with you.</p>
+    </div>
+
+    <!-- Product grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+      <!-- Trucker Hats -->
+      <div class="product-card bg-white rounded-2xl overflow-hidden shadow-md flex flex-col">
+        <div class="aspect-square overflow-hidden">
+          <img src="shared/images/merch-hats.jpg" alt="Gas Cafe Trucker Hat" class="w-full h-full object-cover" style="filter: saturate(1.05) brightness(1.02);">
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h4 class="font-karla font-semibold text-forest text-sm mb-1">Trucker Hat</h4>
+          <p class="font-karla text-forest/50 text-xs mb-3">Classic snapback</p>
+          <div class="mt-auto">
+            <button class="btn-golden-sm w-full justify-center text-xs">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hoodie -->
+      <div class="product-card bg-white rounded-2xl overflow-hidden shadow-md flex flex-col">
+        <div class="aspect-square overflow-hidden bg-warm-beige flex items-center justify-center">
+          <img src="shared/images/merch-hoodie.jpg" alt="Gas Cafe Hoodie" class="w-full h-full object-cover" style="filter: saturate(1.05) brightness(1.02);">
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h4 class="font-karla font-semibold text-forest text-sm mb-1">Hoodie</h4>
+          <p class="font-karla text-forest/50 text-xs mb-3">Heavyweight fleece</p>
+          <div class="mt-auto">
+            <button class="btn-golden-sm w-full justify-center text-xs">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cooler Bag -->
+      <div class="product-card bg-white rounded-2xl overflow-hidden shadow-md flex flex-col">
+        <div class="aspect-square overflow-hidden">
+          <img src="shared/images/merch-cooler-koozie.jpg" alt="Gas Cafe Cooler Bag" class="w-full h-full object-cover" style="filter: saturate(1.05) brightness(1.02);">
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h4 class="font-karla font-semibold text-forest text-sm mb-1">Cooler Bag</h4>
+          <p class="font-karla text-forest/50 text-xs mb-3">Insulated &amp; branded</p>
+          <div class="mt-auto">
+            <button class="btn-golden-sm w-full justify-center text-xs">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Koozie -->
+      <div class="product-card bg-white rounded-2xl overflow-hidden shadow-md flex flex-col">
+        <div class="aspect-square overflow-hidden bg-warm-beige flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A89888" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M6 8h12M6 16h12"/></svg>
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h4 class="font-karla font-semibold text-forest text-sm mb-1">Koozie</h4>
+          <p class="font-karla text-forest/50 text-xs mb-3">Keep it cold</p>
+          <div class="mt-auto">
+            <button class="btn-golden-sm w-full justify-center text-xs">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stickers -->
+      <div class="product-card bg-white rounded-2xl overflow-hidden shadow-md flex flex-col">
+        <div class="aspect-square overflow-hidden">
+          <img src="shared/images/sticker-closeup.jpg" alt="Gas Cafe Stickers" class="w-full h-full object-cover" style="filter: saturate(1.05) brightness(1.02);">
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h4 class="font-karla font-semibold text-forest text-sm mb-1">Stickers</h4>
+          <p class="font-karla text-forest/50 text-xs mb-3">Slap 'em everywhere</p>
+          <div class="mt-auto">
+            <button class="btn-golden-sm w-full justify-center text-xs">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- WAVE: warm-stone to cream                       -->
+<!-- ════════════════════════════════════════════════ -->
+<div style="background: #E8E0D4;">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="block w-full" style="height: 60px;">
+    <path fill="#FFFDF7" d="M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80Z"/>
+    <path fill="#E8E0D4" d="M0,0 L1440,0 L1440,80 C360,0 1080,0 0,80Z"/>
+  </svg>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- REVIEWS                                         -->
+<!-- ════════════════════════════════════════════════ -->
+<section id="reviews" class="bg-cream py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <p class="font-karla text-golden-dark uppercase tracking-[0.2em] text-sm font-semibold mb-3">Real Talk</p>
+      <h2 class="font-playfair italic text-4xl md:text-5xl text-forest font-bold mb-4">What Folks Are Saying</h2>
+    </div>
+
+    <!-- Review cards -->
+    <div class="space-y-8">
+
+      <!-- Review 1 -->
+      <div class="review-card bg-white rounded-xl p-6 md:p-8 shadow-sm">
+        <div class="flex items-center gap-1 mb-4">
+          <span class="star text-lg">&#9733;</span>
+          <span class="star text-lg">&#9733;</span>
+          <span class="star text-lg">&#9733;</span>
+          <span class="star text-lg">&#9733;</span>
+          <span class="star text-lg">&#9733;</span>
+        </div>
+        <p class="font-karla text-forest/80 text-base md:text-lg leading-relaxed mb-5">
+          "Stopped here on our way to the ski slopes and couldn't believe the food coming out of a gas station kitchen. The Triple Bypass breakfast sandwich is absolutely legendary. My husband got the Spicy Cowboy burger and said it was the best he's ever had. We've been back three times this season already."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-golden/20 flex items-center justify-center">
+            <span class="font-playfair text-golden-dark font-bold text-sm">LS</span>
+          </div>
+          <div>
+            <p class="font-karla font-semibold text-forest text-sm">Laura S.</p>
+            <p class="font-karla text-forest/40 text-xs">Local regular</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="review-card bg-white rounded-xl p-6 md:p-8 shadow-sm">
+        <div class="flex items-center gap-1 mb-4">
+          <span class="star text-lg">&#9733;</span>
+          <span class="star text-lg">&#9733;</span>
+          <span class="star text-lg">&#9733;</span>
+          <span class="star text-lg">&#9733;</span>
+          <span class="star text-lg">&#9733;</span>
+        </div>
+        <p class="font-karla text-forest/80 text-base md:text-lg leading-relaxed mb-5">
+          "If you're in Crested Butte and don't eat at Gas Cafe, you're doing it wrong. This place has so much character &mdash; rock &amp; roll blasting, friendly staff, and food that has no business being this good at a gas station. The P.H.G. burrito is my go-to every single time. Also grabbed a trucker hat for the road."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-golden/20 flex items-center justify-center">
+            <span class="font-playfair text-golden-dark font-bold text-sm">KC</span>
+          </div>
+          <div>
+            <p class="font-karla font-semibold text-forest text-sm">Kristin C.</p>
+            <p class="font-karla text-forest/40 text-xs">Visitor from Denver</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- WAVE: cream to warm-beige                       -->
+<!-- ════════════════════════════════════════════════ -->
+<div style="background: #FFFDF7;">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="block w-full" style="height: 60px;">
+    <path fill="#F5EFE6" d="M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80Z"/>
+    <path fill="#FFFDF7" d="M0,0 L1440,0 L1440,80 C360,0 1080,0 0,80Z"/>
+  </svg>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- VISIT / COME SEE US                             -->
+<!-- ════════════════════════════════════════════════ -->
+<section id="visit" class="py-20 md:py-28" style="background: #F5EFE6;">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <p class="font-karla text-golden-dark uppercase tracking-[0.2em] text-sm font-semibold mb-3">Find Us</p>
+      <h2 class="font-playfair text-4xl md:text-5xl text-forest font-bold mb-4">Come See Us</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <!-- Info -->
+      <div class="bg-white rounded-2xl p-8 md:p-10 shadow-md">
+        <!-- Address -->
+        <div class="flex items-start gap-4 mb-6">
+          <div class="mt-1 w-10 h-10 rounded-full bg-forest/10 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D4A3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h4 class="font-karla font-semibold text-forest text-base mb-1">Address</h4>
+            <p class="font-karla text-forest/70 text-sm leading-relaxed">
+              602 Butte Ave<br>Crested Butte, CO 81225
+            </p>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="flex items-start gap-4 mb-6">
+          <div class="mt-1 w-10 h-10 rounded-full bg-forest/10 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D4A3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-karla font-semibold text-forest text-base mb-1">Phone</h4>
+            <a href="tel:9703490424" class="font-karla text-forest/70 text-sm hover:text-sunset-red transition-colors">(970) 349-0424</a>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div class="flex items-start gap-4 mb-6">
+          <div class="mt-1 w-10 h-10 rounded-full bg-forest/10 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D4A3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h4 class="font-karla font-semibold text-forest text-base mb-1">Hours</h4>
+            <p class="font-karla text-forest/70 text-sm leading-relaxed">
+              Mon &ndash; Sat: 6:00 AM &ndash; 9:00 PM<br>
+              Sunday: 7:00 AM &ndash; 8:00 PM
+            </p>
+          </div>
+        </div>
+
+        <!-- Transit note -->
+        <div class="flex items-start gap-4 bg-golden/10 rounded-xl p-4">
+          <div class="mt-0.5 w-8 h-8 rounded-full bg-golden/20 flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8923A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div>
+            <p class="font-karla text-forest/80 text-sm leading-relaxed">
+              <span class="font-semibold">Free Mountain Express</span> bus stops right outside. No car? No problem.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="map-placeholder">
+        <div class="relative z-10 text-center p-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A89888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p class="font-playfair italic text-forest/40 text-lg mb-2">602 Butte Ave</p>
+          <p class="font-karla text-forest/30 text-sm">Crested Butte, CO 81225</p>
+          <a href="https://maps.google.com/?q=602+Butte+Ave+Crested+Butte+CO+81225" target="_blank" rel="noopener" class="btn-forest text-sm mt-6 !inline-flex">
+            Open in Maps
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- FOOTER                                          -->
+<!-- ════════════════════════════════════════════════ -->
+<footer class="bg-forest text-cream">
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-3 gap-10 items-start">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="shared/images/logo-acdc.jpg" alt="Gas Cafe" class="w-10 h-10 rounded-full object-cover opacity-90">
+          <span class="font-playfair text-xl font-bold text-cream">Gas Cafe One Stop</span>
+        </div>
+        <p class="font-karla text-cream/50 text-sm leading-relaxed">
+          Grillin' high in the Rockies since 1998. Crested Butte's favorite gas station, deli, and general store.
+        </p>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <h4 class="font-karla font-semibold text-cream/80 uppercase tracking-wider text-xs mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#menu" class="font-karla text-cream/50 text-sm hover:text-golden transition-colors">Menu</a></li>
+          <li><a href="#shop" class="font-karla text-cream/50 text-sm hover:text-golden transition-colors">Shop</a></li>
+          <li><a href="#reviews" class="font-karla text-cream/50 text-sm hover:text-golden transition-colors">Reviews</a></li>
+          <li><a href="#visit" class="font-karla text-cream/50 text-sm hover:text-golden transition-colors">Visit</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="font-karla font-semibold text-cream/80 uppercase tracking-wider text-xs mb-4">Contact</h4>
+        <p class="font-karla text-cream/50 text-sm leading-relaxed mb-3">
+          602 Butte Ave<br>
+          Crested Butte, CO 81225
+        </p>
+        <a href="tel:9703490424" class="font-karla text-cream/50 text-sm hover:text-golden transition-colors block mb-4">(970) 349-0424</a>
+
+        <!-- Social -->
+        <div class="flex items-center gap-4 mt-4">
+          <a href="#" class="text-cream/40 hover:text-golden transition-colors" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="text-cream/40 hover:text-golden transition-colors" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="text-cream/40 hover:text-golden transition-colors" aria-label="Twitter / X">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-cream/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="font-karla text-cream/30 text-xs">&copy; 2024 Gas Cafe One Stop. All rights reserved.</p>
+      <p class="font-karla text-cream/20 text-xs">Mockup #11 &mdash; Mountain Highway</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- SCRIPTS                                         -->
+<!-- ════════════════════════════════════════════════ -->
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('mainNav');
+  function updateNav() {
+    if (window.scrollY > 80) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Simple fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.menu-card, .product-card, .review-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

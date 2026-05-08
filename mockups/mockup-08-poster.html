@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gas Cafe — Mockup 8: Concert Poster</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            poster: {
+              black: '#0a0a0a',
+              red: '#DC2626',
+              cream: '#FDF6E3',
+              blue: '#1e3a8a',
+              darkred: '#7f1d1d',
+              gold: '#F59E0B',
+            }
+          },
+          fontFamily: {
+            display: ['"Abril Fatface"', 'serif'],
+            body: ['"Merriweather"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Merriweather', serif; overflow-x: hidden; }
+
+    /* ============ GRAIN / NOISE OVERLAY ============ */
+    .grain::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* ============ TORN EDGE DIVIDERS ============ */
+    .torn-bottom {
+      position: relative;
+    }
+    .torn-bottom::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 0;
+      right: 0;
+      height: 60px;
+      z-index: 10;
+      background: inherit;
+      clip-path: polygon(
+        0% 0%, 3% 45%, 5% 10%, 8% 50%, 11% 15%, 14% 55%, 16% 20%, 19% 60%,
+        22% 10%, 25% 50%, 27% 25%, 30% 55%, 33% 5%, 36% 45%, 38% 20%,
+        41% 60%, 44% 15%, 47% 50%, 49% 10%, 52% 55%, 55% 25%, 58% 50%,
+        60% 5%, 63% 45%, 66% 20%, 69% 55%, 71% 10%, 74% 50%, 77% 30%,
+        80% 55%, 82% 15%, 85% 45%, 88% 5%, 91% 50%, 93% 25%, 96% 55%,
+        100% 10%, 100% 0%
+      );
+    }
+    /* Assign matching backgrounds to each torn edge */
+    .torn-hero::after { background: #0a0a0a; }
+    .torn-menu::after { background: #FDF6E3; }
+    .torn-shop::after { background: #1e3a8a; }
+    .torn-reviews::after { background: #7f1d1d; }
+
+    /* ============ POSTER SECTION BASE ============ */
+    .poster-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem;
+    }
+    .poster-section > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ============ DRAMATIC TYPOGRAPHY ============ */
+    .headline-massive {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(4rem, 10vw, 10rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
+    .headline-large {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      line-height: 0.95;
+    }
+    .headline-medium {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(1.5rem, 3.5vw, 3.5rem);
+      line-height: 1.1;
+    }
+    .tracked {
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+    .tracked-tight {
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ============ DOTTED LEADERS (menu pricing) ============ */
+    .menu-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.35rem 0;
+    }
+    .menu-row .item-name {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .menu-row .leaders {
+      flex: 1;
+      border-bottom: 2px dotted currentColor;
+      opacity: 0.3;
+      min-width: 2rem;
+      margin-bottom: 0.3em;
+    }
+    .menu-row .item-price {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ============ VERTICAL NAV ============ */
+    .side-nav {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1rem 0.75rem;
+    }
+    .side-nav a {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      font-family: 'Merriweather', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s;
+      padding: 0.25rem 0;
+    }
+    .side-nav a:hover {
+      color: #DC2626;
+    }
+    @media (max-width: 768px) {
+      .side-nav { display: none; }
+    }
+
+    /* ============ MOBILE NAV ============ */
+    .mobile-nav {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .mobile-nav {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(10,10,10,0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 0.75rem 1rem;
+        gap: 0.25rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-bottom: 1px solid rgba(220,38,38,0.2);
+      }
+      .mobile-nav a {
+        font-family: 'Merriweather', serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.5);
+        text-decoration: none;
+        padding: 0.25rem 0.5rem;
+        transition: color 0.3s;
+      }
+      .mobile-nav a:hover {
+        color: #DC2626;
+      }
+    }
+
+    /* ============ STAR RATING ============ */
+    .stars {
+      color: #F59E0B;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* ============ PULL QUOTE ============ */
+    .pull-quote {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      line-height: 1.2;
+      font-style: normal;
+    }
+
+    /* ============ SCROLLBAR ============ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #DC2626; border-radius: 3px; }
+
+    /* ============ BACKGROUND IMAGE COVER ============ */
+    .bg-cover-overlay {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+    .bg-cover-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(30, 58, 138, 0.85);
+      z-index: 0;
+    }
+
+    /* ============ LIGHTNING BOLT DECORATIVE ============ */
+    .bolt {
+      display: inline-block;
+      color: #F59E0B;
+      text-shadow: 0 0 20px rgba(245,158,11,0.5);
+    }
+
+    /* ============ RULE LINES ============ */
+    .rule-line {
+      width: 100%;
+      max-width: 500px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.2;
+      margin: 1.5rem auto;
+    }
+    .rule-line-thick {
+      width: 100%;
+      max-width: 500px;
+      height: 3px;
+      background: currentColor;
+      opacity: 0.15;
+      margin: 2rem auto;
+    }
+  </style>
+</head>
+<body class="bg-poster-black">
+
+  <!-- ============ SIDE NAVIGATION ============ -->
+  <nav class="side-nav" aria-label="Section navigation">
+    <a href="#hero">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#shop">Merch</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- ============ MOBILE NAVIGATION ============ -->
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a href="#hero">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#shop">Merch</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+
+  <!-- ================================================================
+       POSTER 1: HERO — Deep black with red type
+       ================================================================ -->
+  <section id="hero" class="poster-section grain torn-bottom torn-hero" style="background: #0a0a0a; padding-bottom: 8rem;">
+    <div class="text-center max-w-3xl mx-auto">
+
+      <!-- Logo -->
+      <div class="mb-10">
+        <img
+          src="shared/images/logo-acdc.jpg"
+          alt="Gas Cafe One Stop"
+          class="w-full max-w-md mx-auto"
+          style="mix-blend-mode: lighten; filter: brightness(1.1);"
+        >
+      </div>
+
+      <!-- Headline stack -->
+      <div class="mb-6">
+        <h1 class="headline-massive text-poster-red mb-2">
+          GAS<span class="bolt">&#9889;</span>CAFE
+        </h1>
+      </div>
+
+      <div class="mb-8">
+        <p class="headline-large text-white" style="opacity: 0.9;">ONE STOP</p>
+      </div>
+
+      <div class="rule-line" style="background: #DC2626;"></div>
+
+      <p class="tracked text-white text-sm md:text-base mb-8" style="opacity: 0.5; font-family: 'Merriweather', serif; font-weight: 300;">
+        Crested Butte, Colorado
+      </p>
+
+      <div class="rule-line" style="background: #DC2626;"></div>
+
+      <!-- Tour date line -->
+      <p class="tracked-tight text-poster-red text-xs md:text-sm mt-8" style="font-family: 'Merriweather', serif; font-weight: 700;">
+        Grillin' High in the Rockies Since 1998
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       POSTER 2: MENU — Cream/off-white with dark type
+       ================================================================ -->
+  <section id="menu" class="poster-section grain torn-bottom torn-menu" style="background: #FDF6E3; color: #1a1a1a; padding-top: 10rem; padding-bottom: 10rem;">
+    <div class="w-full max-w-xl mx-auto text-center">
+
+      <!-- Section title -->
+      <h2 class="headline-massive text-poster-black mb-2" style="font-size: clamp(3rem, 8vw, 8rem);">THE</h2>
+      <h2 class="headline-massive text-poster-black mb-6" style="font-size: clamp(4rem, 10vw, 10rem);">MENU</h2>
+
+      <div class="rule-line-thick" style="background: #1a1a1a;"></div>
+
+      <!-- Breakfast -->
+      <div class="text-left mt-10 mb-10">
+        <h3 class="headline-medium text-poster-darkred text-center mb-1">Breakfast</h3>
+        <p class="tracked text-center text-xs mb-6" style="opacity: 0.5; font-weight: 300;">Served 'til 11:30</p>
+
+        <div class="menu-row"><span class="item-name">McStop</span><span class="leaders"></span><span class="item-price">$7.19</span></div>
+        <div class="menu-row"><span class="item-name">Hurley</span><span class="leaders"></span><span class="item-price">$8.39</span></div>
+        <div class="menu-row"><span class="item-name">Triple Bypass</span><span class="leaders"></span><span class="item-price">$9.99</span></div>
+        <div class="menu-row"><span class="item-name">Quad Bypass</span><span class="leaders"></span><span class="item-price">$10.99</span></div>
+        <div class="menu-row"><span class="item-name">Gasser</span><span class="leaders"></span><span class="item-price">$8.99</span></div>
+        <div class="menu-row"><span class="item-name">P.H.G.</span><span class="leaders"></span><span class="item-price">$11.99</span></div>
+        <div class="menu-row"><span class="item-name">New Yorker</span><span class="leaders"></span><span class="item-price">$11.99</span></div>
+        <div class="menu-row"><span class="item-name">Truck Stop</span><span class="leaders"></span><span class="item-price">$11.99</span></div>
+      </div>
+
+      <div class="rule-line" style="background: #1a1a1a;"></div>
+
+      <!-- Burgers -->
+      <div class="text-left mt-10">
+        <h3 class="headline-medium text-poster-darkred text-center mb-6">Burgers</h3>
+
+        <div class="menu-row"><span class="item-name">Working Man</span><span class="leaders"></span><span class="item-price">$14.39</span></div>
+        <div class="menu-row"><span class="item-name">Spicy Cowboy</span><span class="leaders"></span><span class="item-price">$16.59</span></div>
+        <div class="menu-row"><span class="item-name">Euro Burger</span><span class="leaders"></span><span class="item-price">$16.59</span></div>
+        <div class="menu-row"><span class="item-name">Pizza Burger</span><span class="leaders"></span><span class="item-price">$16.59</span></div>
+      </div>
+
+      <div class="rule-line-thick mt-10" style="background: #1a1a1a;"></div>
+
+      <p class="tracked text-xs mt-6" style="opacity: 0.35; font-weight: 300;">
+        Tax not included &bull; Prices subject to change
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       POSTER 3: SHOP / MERCH — Electric blue with white/gold type
+       ================================================================ -->
+  <section id="shop" class="poster-section torn-bottom torn-shop" style="background: #1e3a8a; color: #ffffff; padding-top: 10rem; padding-bottom: 10rem; position: relative; overflow: hidden;">
+
+    <!-- Background image with overlay -->
+    <div class="bg-cover-overlay" style="background-image: url('shared/images/merch-hats.jpg');"></div>
+
+    <!-- Grain overlay on top of image -->
+    <div style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0.15;background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E&quot;);background-repeat:repeat;background-size:200px 200px;"></div>
+
+    <div class="w-full max-w-xl mx-auto text-center" style="position:relative;z-index:2;">
+
+      <h2 class="headline-massive text-white mb-4" style="font-size: clamp(4rem, 10vw, 10rem); text-shadow: 0 4px 30px rgba(0,0,0,0.5);">MERCH</h2>
+
+      <div class="rule-line" style="background: #F59E0B;"></div>
+
+      <p class="tracked text-poster-gold text-xs md:text-sm mt-6 mb-12" style="font-weight: 700;">
+        Rep the Cafe
+      </p>
+
+      <!-- Merch listings as type -->
+      <div class="space-y-8 text-left max-w-md mx-auto">
+        <div>
+          <h3 class="headline-medium text-poster-gold mb-1">Trucker Hats</h3>
+          <p class="text-white text-sm" style="opacity: 0.7; font-weight: 300; line-height: 1.6;">Classic snapback with the Gas Cafe lightning bolt logo. Multiple colorways.</p>
+        </div>
+        <div>
+          <h3 class="headline-medium text-poster-gold mb-1">Hoodie</h3>
+          <p class="text-white text-sm" style="opacity: 0.7; font-weight: 300; line-height: 1.6;">Heavyweight pullover. Rock the logo at 9,000 feet.</p>
+        </div>
+        <div>
+          <h3 class="headline-medium text-poster-gold mb-1">Cooler Bag</h3>
+          <p class="text-white text-sm" style="opacity: 0.7; font-weight: 300; line-height: 1.6;">Insulated and trail-ready. Keeps your road beers cold.</p>
+        </div>
+        <div>
+          <h3 class="headline-medium text-poster-gold mb-1">Koozie</h3>
+          <p class="text-white text-sm" style="opacity: 0.7; font-weight: 300; line-height: 1.6;">Foam insulated can sleeve. Essential apres gear.</p>
+        </div>
+        <div>
+          <h3 class="headline-medium text-poster-gold mb-1">Stickers</h3>
+          <p class="text-white text-sm" style="opacity: 0.7; font-weight: 300; line-height: 1.6;">Die-cut vinyl. Slap 'em on everything.</p>
+        </div>
+      </div>
+
+      <div class="rule-line mt-12" style="background: #F59E0B;"></div>
+
+      <p class="tracked text-white text-xs mt-6" style="opacity: 0.4; font-weight: 300;">
+        Available in-store only
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       POSTER 4: REVIEWS — Deep red with cream type
+       ================================================================ -->
+  <section id="reviews" class="poster-section grain torn-bottom torn-reviews" style="background: #7f1d1d; color: #FDF6E3; padding-top: 10rem; padding-bottom: 10rem;">
+    <div class="w-full max-w-xl mx-auto text-center">
+
+      <p class="tracked text-xs mb-4" style="opacity: 0.5; font-weight: 300;">Straight from the people</p>
+
+      <h2 class="headline-massive mb-4" style="font-size: clamp(3rem, 8vw, 7rem);">WHAT</h2>
+      <h2 class="headline-massive mb-2" style="font-size: clamp(2.5rem, 6vw, 5rem);">THEY</h2>
+      <h2 class="headline-massive mb-10" style="font-size: clamp(3.5rem, 9vw, 8rem);">SAY</h2>
+
+      <div class="rule-line" style="background: #FDF6E3;"></div>
+
+      <!-- Review 1 -->
+      <div class="my-12">
+        <div class="stars mb-4">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote class="pull-quote mb-4">
+          &ldquo;Best breakfast sandwich I've ever had!&rdquo;
+        </blockquote>
+        <p class="tracked text-xs" style="opacity: 0.6; font-weight: 300;">&mdash; Laura S.</p>
+      </div>
+
+      <div class="rule-line" style="background: #FDF6E3;"></div>
+
+      <!-- Review 2 -->
+      <div class="my-12">
+        <div class="stars mb-4">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote class="pull-quote mb-4">
+          &ldquo;Best burgers in CB hands down&rdquo;
+        </blockquote>
+        <p class="tracked text-xs" style="opacity: 0.6; font-weight: 300;">&mdash; Kristin C.</p>
+      </div>
+
+      <div class="rule-line" style="background: #FDF6E3;"></div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       POSTER 5: CONTACT — Black with white type
+       ================================================================ -->
+  <section id="contact" class="poster-section grain" style="background: #0a0a0a; color: #ffffff; padding-top: 10rem; padding-bottom: 8rem;">
+    <div class="w-full max-w-xl mx-auto text-center">
+
+      <h2 class="headline-massive text-poster-red mb-6" style="font-size: clamp(3rem, 8vw, 8rem);">COME</h2>
+      <h2 class="headline-massive text-white mb-2" style="font-size: clamp(2rem, 5vw, 5rem);">GET</h2>
+      <h2 class="headline-massive text-poster-red mb-10" style="font-size: clamp(3.5rem, 9vw, 9rem);">GASSED</h2>
+
+      <div class="rule-line" style="background: #DC2626;"></div>
+
+      <!-- Address -->
+      <div class="mt-10 mb-8">
+        <p class="tracked text-xs mb-6" style="opacity: 0.4; font-weight: 300;">Find Us</p>
+        <p class="headline-medium text-white mb-2" style="font-size: clamp(1.2rem, 2.5vw, 1.8rem);">602 Butte Ave</p>
+        <p class="text-white text-sm mb-1" style="opacity: 0.6; font-weight: 300;">Crested Butte, CO 81225</p>
+      </div>
+
+      <!-- Phone -->
+      <div class="mb-10">
+        <a href="tel:9703490424" class="headline-medium text-poster-red hover:text-poster-gold transition-colors" style="font-size: clamp(1.3rem, 3vw, 2.2rem); text-decoration: none;">
+          970-349-0424
+        </a>
+      </div>
+
+      <div class="rule-line" style="background: #DC2626;"></div>
+
+      <!-- Social -->
+      <div class="mt-10 mb-8">
+        <p class="tracked text-xs mb-6" style="opacity: 0.4; font-weight: 300;">Follow the Noise</p>
+        <div class="flex justify-center gap-8">
+          <a href="#" class="text-white hover:text-poster-red transition-colors" aria-label="Facebook">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" class="text-white hover:text-poster-red transition-colors" aria-label="Instagram">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" class="text-white hover:text-poster-red transition-colors" aria-label="Google">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="rule-line" style="background: #DC2626;"></div>
+
+      <!-- Footer tagline -->
+      <div class="mt-12">
+        <p class="text-white text-xs" style="opacity: 0.2; font-weight: 300; letter-spacing: 0.1em;">
+          Gas Cafe One Stop &bull; Crested Butte, CO &bull; Est. 1998
+        </p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

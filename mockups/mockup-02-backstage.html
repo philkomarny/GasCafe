@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gas Cafe — Mockup 2: Backstage Pass</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gc: {
+              black: '#0a0a0a',
+              charcoal: '#1a1a1a',
+              dark: '#222222',
+              red: '#dc2626',
+              blue: '#1e3a8a',
+              white: '#f5f5f5',
+              gray: '#9ca3af',
+            }
+          },
+          fontFamily: {
+            metal: ['"Metal Mania"', 'cursive'],
+            bebas: ['"Bebas Neue"', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+    .chalkboard { background-image: url('shared/images/chalkboard-bg.jpg'); background-size: cover; background-position: center; }
+    .red-glow { text-shadow: 0 0 20px rgba(220, 38, 38, 0.5), 0 0 40px rgba(220, 38, 38, 0.2); }
+  </style>
+</head>
+<body class="bg-gc-black text-gc-white">
+
+  <!-- NAV: Dark and minimal with red accent line -->
+  <nav class="fixed top-0 w-full z-50 bg-gc-black/95 backdrop-blur-sm border-b border-gc-red/30">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="#" class="font-metal text-2xl text-gc-red red-glow tracking-wider">GAS/CAFE</a>
+      <div class="hidden md:flex gap-8 font-bebas text-lg tracking-widest text-gc-gray">
+        <a href="#hero" class="hover:text-gc-red transition-colors">Home</a>
+        <a href="#menu" class="hover:text-gc-red transition-colors">Menu</a>
+        <a href="#shop" class="hover:text-gc-red transition-colors">Shop</a>
+        <a href="#about" class="hover:text-gc-red transition-colors">About</a>
+        <a href="#reviews" class="hover:text-gc-red transition-colors">Reviews</a>
+        <a href="#contact" class="hover:text-gc-red transition-colors">Contact</a>
+      </div>
+      <a href="tel:9703499656" class="hidden md:block font-bebas text-lg tracking-wider text-gc-gray hover:text-gc-red transition-colors">970-349-9656</a>
+      <button class="md:hidden text-gc-gray">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO: Full chalkboard background, moody -->
+  <section id="hero" class="min-h-screen flex flex-col items-center justify-center pt-16 relative chalkboard">
+    <div class="absolute inset-0 bg-black/70"></div>
+    <div class="relative z-10 text-center px-6">
+      <img src="shared/images/logo-acdc.jpg" alt="Gas Cafe" class="w-full max-w-lg mx-auto mb-10 invert opacity-90">
+      <p class="font-body text-xl md:text-2xl text-gc-gray max-w-2xl mx-auto mb-6 leading-relaxed">Gas station, killer sandwiches & convenience store all wrapped into one.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+        <span class="font-bebas text-lg tracking-widest text-gc-red">Crested Butte, CO</span>
+        <span class="hidden sm:block text-gc-dark">&bull;</span>
+        <span class="font-bebas text-lg tracking-widest text-gc-gray">Open Daily 6:30am – 9:00pm</span>
+      </div>
+      <a href="#menu" class="inline-block border-2 border-gc-red text-gc-red font-bebas text-xl tracking-widest px-10 py-4 hover:bg-gc-red hover:text-white transition-all duration-300">See the Menu</a>
+    </div>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section id="menu" class="py-24 relative chalkboard">
+    <div class="absolute inset-0 bg-black/80"></div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6">
+      <h2 class="font-metal text-5xl md:text-7xl text-center mb-2 red-glow text-gc-red">The Menu</h2>
+      <p class="text-center font-bebas text-xl tracking-wider text-gc-gray mb-16">Breakfast Until 11:30 AM &bull; Lunch After 11:30 AM</p>
+
+      <!-- Breakfast -->
+      <div class="mb-16">
+        <h3 class="font-metal text-3xl text-gc-red mb-8 border-b border-gc-red/30 pb-3">Breakfast</h3>
+        <div class="space-y-4">
+          <div class="bg-gc-black/60 border-l-4 border-gc-red pl-6 pr-4 py-4 backdrop-blur-sm">
+            <h4 class="font-bebas text-2xl tracking-wider">MC Stop</h4>
+            <p class="text-gc-gray text-sm mt-1">English muffin, fried egg, American cheese with ham, bacon, or sausage</p>
+          </div>
+          <div class="bg-gc-black/60 border-l-4 border-gc-red pl-6 pr-4 py-4 backdrop-blur-sm">
+            <h4 class="font-bebas text-2xl tracking-wider">Hurley</h4>
+            <p class="text-gc-gray text-sm mt-1">MC Stop with a hash brown in da middle</p>
+          </div>
+          <div class="bg-gc-black/60 border-l-4 border-gc-red pl-6 pr-4 py-4 backdrop-blur-sm">
+            <h4 class="font-bebas text-2xl tracking-wider">Paul Harvey</h4>
+            <p class="text-gc-gray text-sm mt-1">BLT with a fried egg, ham, & a hash brown in da middle</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hot Sammies -->
+      <div class="mb-16">
+        <h3 class="font-metal text-3xl text-gc-red mb-8 border-b border-gc-red/30 pb-3">Hot Sammies</h3>
+        <div class="space-y-4">
+          <div class="bg-gc-black/60 border-l-4 border-gc-red pl-6 pr-4 py-4 backdrop-blur-sm">
+            <h4 class="font-bebas text-2xl tracking-wider">Turkey Mojo</h4>
+            <p class="text-gc-gray text-sm mt-1">Grilled onions & turkey marinated in a Cuban sauce, smothered with melted Pepper Jack cheese</p>
+          </div>
+          <div class="bg-gc-black/60 border-l-4 border-gc-red pl-6 pr-4 py-4 backdrop-blur-sm">
+            <h4 class="font-bebas text-2xl tracking-wider">Chicken Parmesan</h4>
+            <p class="text-gc-gray text-sm mt-1">The Best in the West. Sauteed onions, green peppers and marinara sauce topped with Parmesan and Provolone</p>
+          </div>
+          <div class="bg-gc-black/60 border-l-4 border-gc-red pl-6 pr-4 py-4 backdrop-blur-sm">
+            <h4 class="font-bebas text-2xl tracking-wider">Groovin' Reuben</h4>
+            <p class="text-gc-gray text-sm mt-1">A damn good Reuben</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Burgers -->
+      <div>
+        <h3 class="font-metal text-3xl text-gc-red mb-3 border-b border-gc-red/30 pb-3">Burgers</h3>
+        <p class="text-gc-gray text-sm mb-8 italic">Voted "Best in the Butte." Made with locally raised beef.</p>
+        <div class="space-y-4">
+          <div class="bg-gc-black/60 border-l-4 border-gc-red pl-6 pr-4 py-4 backdrop-blur-sm">
+            <h4 class="font-bebas text-2xl tracking-wider">Working Man</h4>
+            <p class="text-gc-gray text-sm mt-1">Beef or Veggie burger + lettuce, tomato, onion, pickles, ketchup, mustard and American cheese on a toasted potato bun</p>
+          </div>
+          <div class="bg-gc-black/60 border-l-4 border-gc-red pl-6 pr-4 py-4 backdrop-blur-sm">
+            <h4 class="font-bebas text-2xl tracking-wider">Spicy Cowboy</h4>
+            <p class="text-gc-gray text-sm mt-1">Onion rings, spicy BBQ sauce and Pepper Jack cheese on a kaiser roll</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-16">
+        <a href="#" class="inline-block border-2 border-gc-red text-gc-red font-bebas text-xl tracking-widest px-10 py-4 hover:bg-gc-red hover:text-white transition-all duration-300">View Full Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP SECTION -->
+  <section id="shop" class="py-24 bg-gc-black">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="font-metal text-5xl md:text-7xl text-center mb-2 red-glow text-gc-red">Gas Cafe Gear</h2>
+      <p class="text-center font-bebas text-xl tracking-wider text-gc-gray mb-16">Rep the Gasser</p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gc-charcoal border border-gc-dark hover:border-gc-red/50 transition-all duration-300 cursor-pointer group">
+          <div class="aspect-square overflow-hidden">
+            <img src="shared/images/merch-hoodie.jpg" alt="Gasser Hoodie" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+          <div class="p-5 border-t border-gc-dark">
+            <h3 class="font-bebas text-xl tracking-wider">Gasser One Stop Hoodie</h3>
+            <p class="text-gc-red font-bebas text-lg mt-1">$45.00</p>
+          </div>
+        </div>
+        <div class="bg-gc-charcoal border border-gc-dark hover:border-gc-red/50 transition-all duration-300 cursor-pointer group">
+          <div class="aspect-square overflow-hidden">
+            <img src="shared/images/merch-hats.jpg" alt="Gas Cafe Hats" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+          <div class="p-5 border-t border-gc-dark">
+            <h3 class="font-bebas text-xl tracking-wider">Gas/Cafe Trucker Hat</h3>
+            <p class="text-gc-red font-bebas text-lg mt-1">$16.00</p>
+          </div>
+        </div>
+        <div class="bg-gc-charcoal border border-gc-dark hover:border-gc-red/50 transition-all duration-300 cursor-pointer group">
+          <div class="aspect-square overflow-hidden">
+            <img src="shared/images/merch-cooler-koozie.jpg" alt="Cooler Bag & Koozie" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+          <div class="p-5 border-t border-gc-dark">
+            <h3 class="font-bebas text-xl tracking-wider">Gas/Cafe Cooler Bag</h3>
+            <p class="text-gc-red font-bebas text-lg mt-1">$25.00</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="#" class="inline-block border-2 border-gc-red text-gc-red font-bebas text-xl tracking-widest px-10 py-4 hover:bg-gc-red hover:text-white transition-all duration-300">Shop All Gear</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="py-24 relative chalkboard">
+    <div class="absolute inset-0 bg-black/85"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-6">
+      <h2 class="font-metal text-5xl md:text-6xl text-center mb-16 red-glow text-gc-red">What They're Sayin'</h2>
+
+      <div class="space-y-8">
+        <blockquote class="bg-gc-black/60 border-l-4 border-gc-red p-8 backdrop-blur-sm">
+          <p class="text-gc-gray italic text-lg leading-relaxed mb-4">"Best breakfast in town! The breakfast sandwiches are out of this world good! Don't miss out by not stopping here. All of the employees are very friendly."</p>
+          <cite class="font-bebas text-lg tracking-wider text-gc-red not-italic">— Kristin C., Yelp</cite>
+        </blockquote>
+        <blockquote class="bg-gc-black/60 border-l-4 border-gc-red p-8 backdrop-blur-sm">
+          <p class="text-gc-gray italic text-lg leading-relaxed mb-4">"My family and I liked the fact that the food was freshly made without a long wait time. My kids both ate the Chicken Strip meal, my husband had the Club Sandwich and I had the Philly Cheese Steak Sandwich. All of it was hot and delicious!"</p>
+          <cite class="font-bebas text-lg tracking-wider text-gc-red not-italic">— Laura S., Facebook</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT TEASER -->
+  <section id="about" class="py-24 bg-gc-charcoal">
+    <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <img src="shared/images/grillin-high.jpg" alt="Grillin' High in the Rockies since 1998" class="w-full max-w-sm mx-auto invert opacity-80">
+      </div>
+      <div>
+        <h2 class="font-metal text-4xl text-gc-red mb-6 red-glow">Our Story</h2>
+        <p class="text-gc-gray leading-relaxed mb-4">Gas station, killer sandwiches & convenience store all wrapped into one. We've been feeding Crested Butte since 1998 with the best breakfast sandwiches and burgers in town.</p>
+        <p class="text-gc-gray leading-relaxed mb-6">The free Mountain Express bus arrives and departs every 15 minutes right next to us. Fuel up your car, fuel up yourself.</p>
+        <div class="flex gap-6">
+          <img src="shared/images/stealie.png" alt="Gas Cafe Stealie" class="w-16 h-16 object-contain opacity-60">
+          <img src="shared/images/logo-pump.jpg" alt="Gas Cafe Pump Logo" class="w-16 h-16 object-contain opacity-60">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact" class="bg-gc-black border-t border-gc-red/30 py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-12 text-center md:text-left">
+        <div>
+          <img src="shared/images/logo-acdc.jpg" alt="Gas Cafe" class="w-40 mx-auto md:mx-0 mb-4 invert opacity-80">
+          <p class="text-gc-gray text-sm">Grillin' High in the Rockies Since 1998.</p>
+        </div>
+        <div>
+          <h3 class="font-bebas text-xl tracking-widest text-gc-red mb-4">Find Us</h3>
+          <p class="text-gc-gray text-sm mb-1">602 Butte Ave</p>
+          <p class="text-gc-gray text-sm mb-1">Crested Butte, CO 81224</p>
+          <p class="text-gc-gray text-sm mb-3"><a href="tel:9703499656" class="hover:text-gc-red transition-colors">970-349-9656</a></p>
+          <p class="text-gc-gray text-sm">Mon – Sun: 6:30am – 9:00pm</p>
+        </div>
+        <div>
+          <h3 class="font-bebas text-xl tracking-widest text-gc-red mb-4">Connect</h3>
+          <div class="flex gap-6 justify-center md:justify-start">
+            <a href="https://www.facebook.com/gascafeonestop/" class="text-gc-gray hover:text-gc-red transition-colors text-sm">Facebook</a>
+            <a href="https://www.yelp.com/biz/gas-cafe-one-stop-crested-butte" class="text-gc-gray hover:text-gc-red transition-colors text-sm">Yelp</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gc-dark mt-12 pt-8 text-center">
+        <p class="text-gc-gray/50 text-xs">&copy; 2026 Gas Cafe One Stop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

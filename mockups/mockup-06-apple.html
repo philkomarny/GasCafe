@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gas Cafe — Mockup 6: Apple Clean</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black-900: #0a0a0a;
+    --black-800: #111111;
+    --black-700: #1a1a1a;
+    --black-600: #222222;
+    --red-600: #dc2626;
+    --red-500: #ef4444;
+    --red-400: #f87171;
+    --blue-900: #1e3a8a;
+    --blue-800: #1e40af;
+    --blue-700: #1d4ed8;
+    --blue-100: #dbeafe;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--gray-900);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(220,38,38,0.15);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 64px;
+  }
+  .nav-brand {
+    font-family: 'Metal Mania', cursive;
+    font-size: 22px; color: var(--white);
+    text-decoration: none; letter-spacing: 0.05em;
+  }
+  .nav-brand em {
+    font-style: normal; color: var(--red-600);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 14px; font-weight: 400; color: var(--gray-400);
+    text-decoration: none; transition: color 0.2s; letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--red-500); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 20px; background: var(--red-600); color: var(--white);
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    border-radius: 6px; transition: background 0.2s, transform 0.1s;
+  }
+  .nav-cta:hover { background: var(--red-500); }
+  .nav-cta:active { transform: scale(0.98); }
+  .hamburger {
+    display: none; background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger svg { width: 24px; height: 24px; color: var(--gray-400); }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(180deg, var(--black-900) 0%, var(--black-800) 60%, var(--black-700) 100%);
+    padding: 7rem 2rem 6rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--red-600), transparent);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px; border-radius: 100px;
+    background: rgba(220,38,38,0.08); border: 1px solid rgba(220,38,38,0.2);
+    font-size: 13px; font-weight: 700; color: var(--red-500);
+    letter-spacing: 0.04em; margin-bottom: 2.5rem;
+    text-transform: uppercase;
+  }
+  .hero-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--red-500);
+  }
+  .hero-logo {
+    width: 100%; max-width: 480px; margin: 0 auto 1.5rem;
+    filter: invert(1);
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400; color: var(--gray-400);
+    line-height: 1.2; letter-spacing: 0.15em;
+    margin-bottom: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto;
+  }
+  .hero h1 em {
+    font-style: normal; color: var(--red-500);
+  }
+  .hero p {
+    font-size: 18px; color: var(--gray-500); max-width: 520px;
+    margin: 0 auto 2.5rem; line-height: 1.7; font-weight: 300;
+  }
+  .hero-cta {
+    display: inline-flex; padding: 16px 40px;
+    background: var(--red-600); color: var(--white);
+    font-size: 15px; font-weight: 700; text-decoration: none;
+    border-radius: 8px; transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+  .hero-cta:hover { background: var(--red-500); }
+  .hero-cta:active { transform: scale(0.98); }
+  .hero-meta {
+    margin-top: 3rem; display: flex; justify-content: center; gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    text-align: center;
+  }
+  .hero-meta-item .value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; color: var(--white); letter-spacing: 0.05em;
+  }
+  .hero-meta-item .label {
+    font-size: 12px; color: var(--gray-500); text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 600;
+  }
+
+  /* ── Info bar ── */
+  .info-bar {
+    background: var(--blue-900); padding: 1rem 2rem;
+    text-align: center;
+  }
+  .info-bar-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+  }
+  .info-bar span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px; color: rgba(255,255,255,0.8);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Section headers ── */
+  .section-header {
+    text-align: center; margin-bottom: 3rem;
+  }
+  .section-header h2 {
+    font-family: 'Metal Mania', cursive;
+    font-size: clamp(32px, 5vw, 48px);
+    color: var(--gray-900); margin-bottom: 0.75rem; line-height: 1.2;
+  }
+  .section-header .rule {
+    width: 60px; height: 3px; background: var(--red-600);
+    margin: 0 auto 1rem;
+  }
+  .section-header p {
+    font-size: 17px; color: var(--gray-500); max-width: 520px; margin: 0 auto;
+  }
+
+  /* ── Menu ── */
+  .menu-section {
+    padding: 5rem 2rem; background: var(--white);
+  }
+  .menu-inner {
+    max-width: 900px; margin: 0 auto;
+  }
+  .menu-category {
+    margin-bottom: 3rem;
+  }
+  .menu-category-header {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.5rem; padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--gray-200);
+  }
+  .menu-category-header h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; letter-spacing: 0.08em; color: var(--gray-900);
+  }
+  .menu-category-header .tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+  }
+  .tag-red { background: rgba(220,38,38,0.08); color: var(--red-600); }
+  .tag-blue { background: rgba(30,58,138,0.08); color: var(--blue-900); }
+
+  .menu-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 1rem 0; border-bottom: 1px solid var(--gray-100);
+    transition: background 0.15s;
+  }
+  .menu-item:hover { background: var(--gray-50); margin: 0 -1rem; padding: 1rem; }
+  .menu-item h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 19px; letter-spacing: 0.05em; color: var(--gray-800);
+    font-weight: 400;
+  }
+  .menu-item p {
+    font-size: 14px; color: var(--gray-500); margin-top: 2px; line-height: 1.5;
+    max-width: 580px;
+  }
+  .menu-item .note {
+    font-size: 12px; color: var(--red-600); font-weight: 600;
+    font-style: italic; white-space: nowrap; margin-left: 1rem;
+  }
+
+  .menu-cta {
+    text-align: center; margin-top: 2rem;
+  }
+  .btn-outline {
+    display: inline-flex; padding: 14px 36px;
+    border: 2px solid var(--gray-900); color: var(--gray-900);
+    font-size: 14px; font-weight: 700; text-decoration: none;
+    border-radius: 8px; transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn-outline:hover { background: var(--gray-900); color: var(--white); }
+
+  /* ── Shop ── */
+  .shop-section {
+    padding: 5rem 2rem; background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .shop-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+  }
+  .shop-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: 12px; overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .shop-card:hover {
+    border-color: var(--red-400);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  }
+  .shop-card-img {
+    width: 100%; aspect-ratio: 1; object-fit: cover;
+  }
+  .shop-card-body { padding: 1.5rem; }
+  .shop-card-body h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 0.05em; color: var(--gray-900);
+    margin-bottom: 0.5rem;
+  }
+  .shop-card-body .price {
+    font-size: 18px; font-weight: 700; color: var(--red-600);
+    margin-bottom: 1rem;
+  }
+  .btn-add {
+    display: inline-flex; width: 100%; justify-content: center;
+    padding: 12px; background: var(--black-900); color: var(--white);
+    font-size: 13px; font-weight: 700; text-decoration: none;
+    border-radius: 6px; border: none; cursor: pointer;
+    transition: background 0.2s; letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .btn-add:hover { background: var(--black-700); }
+
+  /* ── Reviews ── */
+  .reviews-section {
+    padding: 5rem 2rem; background: var(--white);
+  }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; max-width: 900px; margin: 0 auto;
+  }
+  .review-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: 10px; padding: 2rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .review-card:hover {
+    border-color: var(--blue-700);
+    box-shadow: 0 4px 20px rgba(15,23,42,0.06);
+  }
+  .review-card .stars {
+    color: var(--red-600); font-size: 16px; margin-bottom: 1rem;
+    letter-spacing: 2px;
+  }
+  .review-card blockquote {
+    font-size: 15px; color: var(--gray-600); line-height: 1.7;
+    font-style: italic; margin-bottom: 1rem;
+  }
+  .review-card cite {
+    font-size: 14px; font-weight: 600; color: var(--gray-900);
+    font-style: normal;
+  }
+  .review-card .source {
+    font-size: 12px; color: var(--gray-400); font-weight: 400;
+  }
+
+  /* ── About ── */
+  .about-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(180deg, var(--black-900) 0%, var(--black-800) 100%);
+    color: var(--white);
+  }
+  .about-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: center;
+  }
+  .about-inner h2 {
+    font-family: 'Metal Mania', cursive;
+    font-size: clamp(32px, 4vw, 44px); margin-bottom: 1.5rem;
+  }
+  .about-inner .rule {
+    width: 60px; height: 3px; background: var(--red-600); margin-bottom: 1.5rem;
+  }
+  .about-inner p {
+    font-size: 16px; color: var(--gray-400); line-height: 1.8; margin-bottom: 1rem;
+  }
+  .about-logos {
+    display: flex; gap: 1.5rem; margin-top: 1.5rem; align-items: center;
+  }
+  .about-logos img {
+    width: 56px; height: 56px; object-fit: contain; opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+  .about-logos img:hover { opacity: 1; }
+  .about-img {
+    filter: invert(1); opacity: 0.7; max-width: 100%;
+  }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--black-900); padding: 3rem 2rem;
+    border-top: 1px solid rgba(220,38,38,0.15);
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-brand {
+    font-family: 'Metal Mania', cursive;
+    font-size: 18px; color: var(--white);
+  }
+  .footer-brand em { font-style: normal; color: var(--red-600); }
+  .footer-info {
+    font-size: 13px; color: var(--gray-500); text-align: center;
+  }
+  .footer-info a { color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
+  .footer-info a:hover { color: var(--red-500); }
+  .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+  .footer-links a {
+    font-size: 13px; color: var(--gray-500); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--red-500); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 64px; left: 0; right: 0;
+      background: rgba(10,10,10,0.97); padding: 1.5rem 2rem;
+      border-bottom: 1px solid rgba(220,38,38,0.15);
+      backdrop-filter: blur(12px);
+    }
+    .hero { padding: 5rem 1.5rem 4rem; }
+    .hero-meta { gap: 1.5rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .about-inner .about-img-wrap { order: -1; }
+    .info-bar-inner { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">GAS<em>/</em>CAFE</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:9703499656" class="nav-cta">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      Call to Order
+    </a>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-badge"><span class="dot"></span> Crested Butte, Colorado</div>
+  <img src="shared/images/logo-acdc.jpg" alt="Gas Cafe One Stop" class="hero-logo">
+  <h1>GAS STATION &bull; <em>KILLER SANDWICHES</em> &bull; CONVENIENCE STORE</h1>
+  <p>All wrapped into one. Grillin' high in the Rockies since 1998.</p>
+  <a href="#menu" class="hero-cta">View the Menu</a>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="value">1998</div>
+      <div class="label">Established</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="value">6:30a–9p</div>
+      <div class="label">Open Daily</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="value">#1</div>
+      <div class="label">Best Burgers in the Butte</div>
+    </div>
+  </div>
+</section>
+
+<div class="info-bar">
+  <div class="info-bar-inner">
+    <span>602 Butte Ave, Crested Butte, CO 81224</span>
+    <span>&#8226;</span>
+    <span>970-349-9656</span>
+    <span>&#8226;</span>
+    <span>Free Mountain Express Bus Stop</span>
+  </div>
+</div>
+
+<!-- Menu -->
+<section class="menu-section" id="menu">
+  <div class="section-header">
+    <h2>The Menu</h2>
+    <div class="rule"></div>
+    <p>Breakfast until 11:30 AM. Lunch served after. Everything made fresh.</p>
+  </div>
+
+  <div class="menu-inner">
+    <div class="menu-category">
+      <div class="menu-category-header">
+        <h3>BREAKFAST</h3>
+        <span class="tag tag-red">Until 11:30 AM</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h4>MC STOP</h4>
+          <p>English muffin, fried egg, American cheese with ham, bacon, or sausage</p>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h4>HURLEY</h4>
+          <p>MC Stop with a hash brown in da middle</p>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h4>TRUCK STOP</h4>
+          <p>Roast beef, fried egg, Cheddar cheese and a hash brown with BBQ sauce on a Kaiser roll</p>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h4>NEW YORKER</h4>
+          <p>Pastrami, fried egg, Swiss cheese, lettuce, tomato, and a hash brown with 1000 Island Dijon on Rye</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <div class="menu-category-header">
+        <h3>BURGERS</h3>
+        <span class="tag tag-blue">Best in the Butte</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h4>WORKING MAN</h4>
+          <p>Beef or Veggie burger + lettuce, tomato, onion, pickles, ketchup, mustard and American cheese on a toasted potato bun</p>
+        </div>
+        <span class="note">#1 Pick</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h4>SPICY COWBOY</h4>
+          <p>Onion rings, spicy BBQ sauce and Pepper Jack cheese on a kaiser roll</p>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h4>EURO BURGER</h4>
+          <p>Italian dressing, sautéed onions, Swiss and Provolone cheese and lettuce on a kaiser roll</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <div class="menu-category-header">
+        <h3>HOT SAMMIES</h3>
+        <span class="tag tag-red">Comes with Fries</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h4>TURKEY MOJO</h4>
+          <p>Grilled onions & turkey marinated in a Cuban sauce, smothered with melted Pepper Jack cheese</p>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h4>CHICKEN PARMESAN</h4>
+          <p>The Best in the West. Sauteed onions, green peppers and marinara sauce topped with Parmesan and Provolone</p>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h4>GROOVIN' REUBEN</h4>
+          <p>A damn good Reuben</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-cta">
+      <a href="#" class="btn-outline">View Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- Shop -->
+<section class="shop-section" id="shop">
+  <div class="section-header">
+    <h2>Gas Cafe Gear</h2>
+    <div class="rule"></div>
+    <p>Rep the Gasser. Hats, hoodies, cooler bags, and more.</p>
+  </div>
+
+  <div class="shop-grid">
+    <div class="shop-card">
+      <img src="shared/images/merch-hoodie.jpg" alt="Gasser One Stop Hoodie" class="shop-card-img">
+      <div class="shop-card-body">
+        <h3>GASSER ONE STOP HOODIE</h3>
+        <div class="price">$45.00</div>
+        <button class="btn-add">Add to Cart</button>
+      </div>
+    </div>
+    <div class="shop-card">
+      <img src="shared/images/merch-hats.jpg" alt="Gas/Cafe Trucker Hat" class="shop-card-img">
+      <div class="shop-card-body">
+        <h3>GAS/CAFE TRUCKER HAT</h3>
+        <div class="price">$16.00</div>
+        <button class="btn-add">Add to Cart</button>
+      </div>
+    </div>
+    <div class="shop-card">
+      <img src="shared/images/merch-cooler-koozie.jpg" alt="Gas/Cafe Cooler Bag" class="shop-card-img">
+      <div class="shop-card-body">
+        <h3>GAS/CAFE COOLER BAG</h3>
+        <div class="price">$25.00</div>
+        <button class="btn-add">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews-section" id="reviews">
+  <div class="section-header">
+    <h2>What They're Sayin'</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Best breakfast in town! The breakfast sandwiches are out of this world good! Don't miss out by not stopping here. All of the employees are very friendly."</blockquote>
+      <cite>Kristin C. <span class="source">— Yelp</span></cite>
+    </div>
+    <div class="review-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"My family and I liked the fact that the food was freshly made without a long wait time. All of it was hot and delicious! The staff was friendly too and the prices reasonable."</blockquote>
+      <cite>Laura S. <span class="source">— Facebook</span></cite>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div>
+      <h2>Our Story</h2>
+      <div class="rule"></div>
+      <p>Gas station, killer sandwiches & convenience store all wrapped into one. We've been feeding Crested Butte since 1998 with the best breakfast sandwiches and burgers in town.</p>
+      <p>The free Mountain Express bus arrives and departs every 15 minutes right next to us. Fuel up your car, fuel up yourself.</p>
+      <div class="about-logos">
+        <img src="shared/images/stealie.png" alt="Gas Cafe Stealie">
+        <img src="shared/images/logo-pump.jpg" alt="Gas Cafe Pump Logo">
+      </div>
+    </div>
+    <div class="about-img-wrap">
+      <img src="shared/images/grillin-high.jpg" alt="Grillin' High in the Rockies since 1998" class="about-img">
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+  <div class="footer-inner">
+    <span class="footer-brand">GAS<em>/</em>CAFE ONE STOP</span>
+    <div class="footer-info">
+      602 Butte Ave, Crested Butte, CO 81224 &nbsp;&bull;&nbsp;
+      <a href="tel:9703499656">970-349-9656</a> &nbsp;&bull;&nbsp;
+      Open Daily 6:30am – 9:00pm
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://www.facebook.com/gascafeonestop/">Facebook</a></li>
+      <li><a href="https://www.yelp.com/biz/gas-cafe-one-stop-crested-butte">Yelp</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
